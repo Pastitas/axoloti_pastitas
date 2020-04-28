@@ -1,0 +1,2192 @@
+<patch-1.0 appVersion="1.0.12">
+   <obj type="hohum/control/axoctrl_button" uuid="c45e129a-706d-4231-baf0-751289517906" name="axoctrl_button_1" x="686" y="28">
+      <params/>
+      <attribs/>
+   </obj>
+   <comment type="patch/comment" x="1022" y="28" text="Hohum axoctrl switch"/>
+   <obj type="hohum/control/axoctrl_core" uuid="63996ce9-a775-4c5b-9f33-1ad46fd7061d" name="obj_3" x="224" y="42">
+      <params/>
+      <attribs/>
+   </obj>
+   <comment type="patch/comment" x="1008" y="42" text="Use this object to switch to next/previous patch in patch bank"/>
+   <obj type="patch/bankindex" uuid="943bd281-10a5-4994-9876-11a3b1fbde8a" name="bankindex_2" x="1022" y="56">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="hohum/control/axoctrl_button" uuid="c45e129a-706d-4231-baf0-751289517906" name="axoctrl_button_2" x="686" y="84">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="math/+1" uuid="13c1a4574bb81783beb8839e81782b9a34e3fc17" name="+1_1" x="1078" y="112">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="patch/load i" uuid="b79124f5b7d1e8b39e187677ddab6260ce8c60a3" name="load_2" x="1148" y="112">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="math/-1" uuid="5fd46bab471bb6509ae83de702dea72933683a98" name="-1_1" x="1078" y="168">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="patch/load i" uuid="b79124f5b7d1e8b39e187677ddab6260ce8c60a3" name="load_3" x="1148" y="168">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="string/c" uuid="4aa90a90c435a742ddfa152d232883fc5b2f1b3" name="c_2" x="448" y="238">
+      <params/>
+      <attribs>
+         <table attributeName="str" table="Bleeb"/>
+      </attribs>
+   </obj>
+   <obj type="lokki/patch/name" uuid="774cef6f-296b-47ec-b408-a9d177f1446b" name="name_1" x="658" y="294">
+      <params/>
+      <attribs/>
+   </obj>
+   <patchobj type="patch/object" uuid="f28e5f56-5665-4b55-8268-3bd828d8350c" name="obj_2" x="658" y="336">
+      <params/>
+      <attribs/>
+      <object id="patch/object" uuid="f28e5f56-5665-4b55-8268-3bd828d8350c">
+         <sDescription></sDescription>
+         <author>hohum_lab (berendkleinhaneveld)</author>
+         <license>undefined</license>
+         <inlets>
+            <charptr32 name="PATCH NAME" description="PATCH NAME"/>
+            <charptr32 name="PARAM" description="PARAM"/>
+            <bool32 name="param trigger" description="param trigger"/>
+            <bool32 name="LFO_mode" description="LFO_mode"/>
+            <bool32 name="LFO_waveform" description="LFO_waveform"/>
+            <frac32buffer name="OSC SCOPE" description="OSC SCOPE"/>
+         </inlets>
+         <outlets/>
+         <displays/>
+         <params/>
+         <attribs/>
+         <includes>
+            <include>./tiar_font5x8.h</include>
+         </includes>
+         <depends>
+            <depend>SD1</depend>
+            <depend>I2CD1</depend>
+            <depend>SPID1</depend>
+         </depends>
+         <code.declaration><![CDATA[    static const uint32_t NPEXCH = 6;
+    ParameterExchange_t PExch[NPEXCH];
+    int32_t displayVector[35];
+    static const uint32_t NPRESETS = 8;
+    static const uint32_t NPRESET_ENTRIES = 32;
+    static const uint32_t NMODULATIONSOURCES = 8;
+    static const uint32_t NMODULATIONTARGETS = 8;
+    int32_t PExModulationPrevVal[1][NMODULATIONSOURCES];
+/* modsource defines */
+/* parameter instance indices */
+static const int PARAM_INDEX_mode_space_long_space_pulse_delay = 0;
+static const int PARAM_INDEX_pulselength__1_delay = 1;
+static const int PARAM_INDEX_mode_space_counter_maximum = 2;
+static const int PARAM_INDEX_mode_space_form_space_long_space_pulse_delay = 3;
+static const int PARAM_INDEX_form_space_counter_maximum = 4;
+static const int PARAM_INDEX_form_space_long_space_pulse_delay = 5;
+/* controller classes */
+/* object classes */
+class instanceStart_space_up_space_line_space_1{
+  public: // v1
+  attr_parent *parent;
+char c[64];
+
+  public: void Init(attr_parent * _parent) {
+parent = _parent;
+strcpy(&c[0],"Hohum labs");
+
+}
+  public: void Dispose() {
+}
+  public: void dsp (char * & outlet_out  ){
+outlet_out = &c[0];
+
+}
+}
+;class instanceStart_space_up_space_line_space_2{
+  public: // v1
+  attr_parent *parent;
+char c[64];
+
+  public: void Init(attr_parent * _parent) {
+parent = _parent;
+strcpy(&c[0]," Axoctrl");
+
+}
+  public: void Dispose() {
+}
+  public: void dsp (char * & outlet_out  ){
+outlet_out = &c[0];
+
+}
+}
+;class instancePATCH_space_NAME{
+  public: // v1
+  attr_parent *parent;
+char * _inlet;
+
+  public: void Init(attr_parent * _parent) {
+parent = _parent;
+}
+  public: void Dispose() {
+}
+  public: void dsp (char * & outlet_inlet  ){
+   outlet_inlet = (char *)_inlet;
+}
+}
+;class instancePARAM{
+  public: // v1
+  attr_parent *parent;
+char * _inlet;
+
+  public: void Init(attr_parent * _parent) {
+parent = _parent;
+}
+  public: void Dispose() {
+}
+  public: void dsp (char * & outlet_inlet  ){
+   outlet_inlet = (char *)_inlet;
+}
+}
+;class instanceparam_space_trigger{
+  public: // v1
+  attr_parent *parent;
+int32_t _inlet;
+
+  public: void Init(attr_parent * _parent) {
+parent = _parent;
+}
+  public: void Dispose() {
+}
+  public: void dsp (bool  & outlet_inlet  ){  
+  outlet_inlet = (char *)_inlet;
+
+}
+}
+;class instanceLFO__mode{
+  public: // v1
+  attr_parent *parent;
+int32_t _inlet;
+
+  public: void Init(attr_parent * _parent) {
+parent = _parent;
+}
+  public: void Dispose() {
+}
+  public: void dsp (bool  & outlet_inlet  ){
+  outlet_inlet = (char *)_inlet;
+
+}
+}
+;class instancemode_space_long_space_pulse{
+  public: // v1
+  attr_parent *parent;
+KeyValuePair KVP_instancemode_space_long_space_pulse_delay;
+int32_t val;
+int ntrig;
+
+  public: void Init(attr_parent * _parent) {
+parent = _parent;
+parent->PExch[PARAM_INDEX_mode_space_long_space_pulse_delay].pfunction = pfun_signed_clamp;
+  SetKVP_IPVP(&KVP_instancemode_space_long_space_pulse_delay,ObjectKvpRoot, "mode long pulse" ,&parent->PExch[PARAM_INDEX_mode_space_long_space_pulse_delay], -1<<27, 1<<27);
+  KVP_RegisterObject(&KVP_instancemode_space_long_space_pulse_delay);
+val = 0;
+ntrig = 0;
+
+}
+  public: void Dispose() {
+}
+  public: void dsp (const bool  inlet_trig,
+bool  & outlet_pulse,
+int param_delay  ){
+if ((inlet_trig > 0) && !ntrig) {
+  val = 1 << 30;
+  ntrig = 1;
+  outlet_pulse = 1;
+}
+else {
+  if (!(inlet_trig > 0))
+    ntrig = 0;
+  if (val>0) {
+    int32_t t;
+    MTOF(-param_delay,t);
+     val -= t>>3;
+     if (val<=0) outlet_pulse = 0;
+     else outlet_pulse = 1;
+  } else outlet_pulse = 0;
+}
+
+}
+}
+;class instancepulselength__1{
+  public: // v1
+  attr_parent *parent;
+KeyValuePair KVP_instancepulselength__1_delay;
+int32_t val;
+int ntrig;
+
+  public: void Init(attr_parent * _parent) {
+parent = _parent;
+parent->PExch[PARAM_INDEX_pulselength__1_delay].pfunction = pfun_signed_clamp;
+  SetKVP_IPVP(&KVP_instancepulselength__1_delay,ObjectKvpRoot, "pulselength_1" ,&parent->PExch[PARAM_INDEX_pulselength__1_delay], -1<<27, 1<<27);
+  KVP_RegisterObject(&KVP_instancepulselength__1_delay);
+val = 0;
+ntrig = 0;
+
+}
+  public: void Dispose() {
+}
+  public: void dsp (const bool  inlet_trig,
+bool  & outlet_pulse,
+int param_delay  ){
+if ((inlet_trig > 0) && !ntrig) {
+  val = 1 << 30;
+  ntrig = 1;
+  outlet_pulse = 1;
+}
+else {
+  if (!(inlet_trig > 0))
+    ntrig = 0;
+  if (val>0) {
+    int32_t t;
+    MTOF(-param_delay,t);
+     val -= t>>3;
+     if (val<=0) outlet_pulse = 0;
+     else outlet_pulse = 1;
+  } else outlet_pulse = 0;
+}
+
+}
+}
+;class instancemux__3{
+  public: // v1
+  attr_parent *parent;
+  public: void Init(attr_parent * _parent) {
+parent = _parent;
+}
+  public: void Dispose() {
+}
+  public: void dsp (const char * inlet_i1,
+const char * inlet_i2,
+const bool  inlet_s,
+char * & outlet_o  ){
+   outlet_o= (inlet_s)?(char *)inlet_i2:(char *)inlet_i1;
+
+}
+}
+;class instanceLFO__waveform{
+  public: // v1
+  attr_parent *parent;
+int32_t _inlet;
+
+  public: void Init(attr_parent * _parent) {
+parent = _parent;
+}
+  public: void Dispose() {
+}
+  public: void dsp (bool  & outlet_inlet  ){
+  outlet_inlet = _inlet;
+
+}
+}
+;class instancemode_space_counter{
+  public: // v1
+  attr_parent *parent;
+KeyValuePair KVP_instancemode_space_counter_maximum;
+   int ntrig;
+   int rtrig;
+   int count;
+
+  public: void Init(attr_parent * _parent) {
+parent = _parent;
+    count=0;
+   ntrig = 0;
+   rtrig = 0;
+
+}
+  public: void Dispose() {
+}
+  public: void dsp (const bool  inlet_trig,
+const bool  inlet_r,
+int32_t & outlet_o,
+bool  & outlet_c,
+int param_maximum  ){
+outlet_c=0;
+if ((inlet_trig>0) && !ntrig) {
+   count += 1; if (count>=param_maximum) {count = 0; outlet_c = 1;}
+   ntrig=1;
+}
+else if (!(inlet_trig>0)) ntrig=0;
+if ((inlet_r>0) && !rtrig) {count=0; rtrig = 1;}
+else if (!(inlet_r>0)) rtrig=0;
+outlet_o= count;
+
+}
+}
+;class instancexor_space_object{
+  public: // v1
+  attr_parent *parent;
+  public: void Init(attr_parent * _parent) {
+parent = _parent;
+}
+  public: void Dispose() {
+}
+  public: void dsp (const bool  inlet_i1,
+const bool  inlet_i2,
+bool  & outlet_o  ){
+outlet_o = (inlet_i1>0)^(inlet_i2>0);
+
+}
+}
+;class instancemode_space_form_space_long_space_pulse{
+  public: // v1
+  attr_parent *parent;
+KeyValuePair KVP_instancemode_space_form_space_long_space_pulse_delay;
+int32_t val;
+int ntrig;
+
+  public: void Init(attr_parent * _parent) {
+parent = _parent;
+parent->PExch[PARAM_INDEX_mode_space_form_space_long_space_pulse_delay].pfunction = pfun_signed_clamp;
+  SetKVP_IPVP(&KVP_instancemode_space_form_space_long_space_pulse_delay,ObjectKvpRoot, "mode form long pulse" ,&parent->PExch[PARAM_INDEX_mode_space_form_space_long_space_pulse_delay], -1<<27, 1<<27);
+  KVP_RegisterObject(&KVP_instancemode_space_form_space_long_space_pulse_delay);
+val = 0;
+ntrig = 0;
+
+}
+  public: void Dispose() {
+}
+  public: void dsp (const bool  inlet_trig,
+bool  & outlet_pulse,
+int param_delay  ){
+if ((inlet_trig > 0) && !ntrig) {
+  val = 1 << 30;
+  ntrig = 1;
+  outlet_pulse = 1;
+}
+else {
+  if (!(inlet_trig > 0))
+    ntrig = 0;
+  if (val>0) {
+    int32_t t;
+    MTOF(-param_delay,t);
+     val -= t>>3;
+     if (val<=0) outlet_pulse = 0;
+     else outlet_pulse = 1;
+  } else outlet_pulse = 0;
+}
+
+}
+}
+;class instancemux__2{
+  public: // v1
+  attr_parent *parent;
+  public: void Init(attr_parent * _parent) {
+parent = _parent;
+}
+  public: void Dispose() {
+}
+  public: void dsp (const char * inlet_i1,
+const char * inlet_i2,
+const bool  inlet_s,
+char * & outlet_o  ){
+   outlet_o= (inlet_s)?(char *)inlet_i2:(char *)inlet_i1;
+
+}
+}
+;class instanceform_space_counter{
+  public: // v1
+  attr_parent *parent;
+KeyValuePair KVP_instanceform_space_counter_maximum;
+   int ntrig;
+   int rtrig;
+   int count;
+
+  public: void Init(attr_parent * _parent) {
+parent = _parent;
+    count=0;
+   ntrig = 0;
+   rtrig = 0;
+
+}
+  public: void Dispose() {
+}
+  public: void dsp (const bool  inlet_trig,
+const bool  inlet_r,
+int32_t & outlet_o,
+bool  & outlet_c,
+int param_maximum  ){
+outlet_c=0;
+if ((inlet_trig>0) && !ntrig) {
+   count += 1; if (count>=param_maximum) {count = 0; outlet_c = 1;}
+   ntrig=1;
+}
+else if (!(inlet_trig>0)) ntrig=0;
+if ((inlet_r>0) && !rtrig) {count=0; rtrig = 1;}
+else if (!(inlet_r>0)) rtrig=0;
+outlet_o= count;
+
+}
+}
+;class instanceOLED128x64__1{
+  public: // v1
+  attr_parent *parent;
+// add include tiar_font5x8
+enum SSD1306 {
+LCDWIDTH            = 128,
+LCDHEIGHT           = 64,
+SETCONTRAST         = 0x81, // 2byte cmd,256 contrast steps, reset = 7F
+DISPLAYON           = 0xAF, // entire display on
+DISPLAYOFF          = 0xAE, // entire display off
+DISPLAYALLON_RESUME = 0xA4,
+NORMALDISPLAY       = 0xA6, // invert = 0xA7
+DEACTIVATE_SCROLL   = 0x2E, // stop control scroll conf by 26 27 29 2A
+MEMORYMODE          = 0x20, // 2byte cmd, 0 horizontal, 1 vertical, 2 page addressing, 3 invalid
+COLUMNADDR          = 0x21, // 3bytes, start, end (included) valid in horizontal or vertical mode
+PAGEADDR            = 0x22, // 3bytes, start, end (included) valid in horizontal or vertical mode
+SETSTARTLINE_0      = 0x40, // set display RAM start line at 0
+SEGREMAP            = 0xA0, // segment remap 0 mapped to SEG0
+SETMULTIPLEX        = 0xA8, // 2 byte cmd, set mux ratio 
+COMSCANDEC          = 0xC8, // scan from COM[N-1] to COM[0] (0xC0 is COM0 to COM[N-1])
+SETDISPLAYOFFSET    = 0xD3, // 2 byte cmd, vertical shift
+SETCOMPINS          = 0xDA, // 2 byte cmd, seq com pin conf, left right remap
+SETDISPLAYCLOCKDIV  = 0xD5, // 2 byte cmd, low nibble A[3:0]+1 = div ratio, high nibble A[7:4] freq, reset 1000b
+SETPRECHARGE        = 0xD9, // 2 byte cmd, precharge period A[3:0] phase1 A[7:4] phase2, reset:2
+SETVCOMDETECT       = 0xDB, // 2 byte Vcomh deselect level A[6:4] 000b 0.65xVcc 010b 0.77(reset) 011b 0.83
+CHARGEPUMP          = 0x8D, // Enable charge pump seq: 0x8D, 0x14, 0xAF (Charge pump setting, enable charge pump, display on)
+EXTERNALVCC         = 0x1,
+SWITCHCAPVCC        = 0x2,
+};
+uint8_t const nibbleToByte[16]={
+0b00000000,
+0b00000011,
+0b00001100,
+0b00001111,
+0b00110000,
+0b00110011,
+0b00111100,
+0b00111111,
+0b11000000,
+0b11000011,
+0b11001100,
+0b11001111,
+0b11110000,
+0b11110011,
+0b11111100,
+0b11111111};
+
+
+uint8_t cpt;
+uint8_t *txbuf;
+uint8_t *rxbuf;
+int32_t mode;
+
+
+uint8_t text[11*4];
+uint8_t tY[128];
+
+    // SETUP
+    // ------------------
+void cmd(uint8_t c){
+  txbuf[0] = 0;
+  txbuf[1] = c;
+  i2cMasterTransmitTimeout(
+  &I2CD1, 0x3C, txbuf, 2, rxbuf, 0, 30);
+ // chThdSleepMilliseconds(1);
+}
+
+// _____________________________________________________________________
+void fill(uint8_t v){
+  cmd(COLUMNADDR);  cmd(0); cmd(127); // Column start end
+  cmd(PAGEADDR);    cmd(0); cmd(  7); // Page start end
+  txbuf[0] = 0x40;
+  for(int i = 1; i < 129; i++)
+    txbuf[i] = v;
+  for(int p = 0; p < 8; p++){
+     i2cMasterTransmitTimeout(&I2CD1, 0x3C, txbuf, 129, rxbuf, 0, 30);
+  	//chThdSleepMilliseconds(1);
+  }
+}
+// _____________________________________________________________________
+// scaled x2 text
+// returns a page to be sent to the SSD1306 based on contents of text
+void calcTextPage(int page, uint8_t tPage[128]){
+  int i = 0;
+  int tLine = page/2;
+  for(int nc = 0; nc < 11; nc++){
+    int ascii_32 = text[nc + 11 * tLine] - ' ';
+    if(ascii_32 < 0 || ascii_32 >= 128-32) ascii_32 = 0;
+    const uint8_t *adChar = tiar_font5x8 + ascii_32 * 5;
+    for(int slice = 0; slice < 5; slice++){
+      uint8_t s;
+      if((page & 1) == 0){
+         s = nibbleToByte[ adChar[slice]       & 15];  // low nibble
+      } else {
+         s = nibbleToByte[(adChar[slice] >> 4) & 15]; // high nibble
+      }
+      tPage[i] = s; i++;
+      tPage[i] = s; i++;
+    }
+    tPage[i] = 0; i++; // separator space
+  }
+  while(i<128){ tPage[i] = 0;   i++;  } // space padding
+}
+// _____________________________________________________________________
+// opt function draw
+
+//LSB up
+uint8_t const tBar[9]={
+0b00000000,
+0b10000000,
+0b11000000,
+0b11100000,
+0b11110000,
+0b11111000,
+0b11111100,
+0b11111110,
+0b11111111
+};
+
+/*
+page0
+    1
+    .
+    7
+*/
+
+uint8_t vBar(uint8_t val, int page){
+  uint8_t _page =  7-(val / 8);
+  if(page > _page) return 0b11111111;  // below => light
+  else if(page < _page) return 0;      // above => dark
+  else return tBar[val&7];
+}
+void _calcScopePage(int page, uint8_t tPage[128]){
+  for(int i=0;i<128;i++){
+  	uint16_t y = ((parent->instanceaxoctrlscope_i.t[i]+64)*3 )/8;
+    tPage[i] = vBar(y,page);
+  }
+}
+void calcScopePage(int page, uint8_t tPage[128]){
+  if(page<2){
+  	calcTextPage(page, tPage);
+  }else{
+    uint16_t y0 = tY[0];
+    uint16_t y1 = tY[1];
+    uint16_t y2;
+    for(int i = 0; i < 128; i++){
+      if(i < 127) y2 = tY[i + 1];
+      uint16_t yM, ym;
+      yM = ym = y1;
+      uint16_t y = (y0 + y1) >> 1;
+      yM = y > yM ? y : yM;
+      ym = y < ym ? y : ym;
+      y = (y2 + y1) >> 1;
+      yM = y > yM ? y : yM;
+      ym = y < ym ? y : ym;
+      if(ym == yM) if(yM > 0) ym--; else yM++;
+      tPage[i] = vBar(yM, page) & ~vBar(ym, page);
+      y0 = y1;
+      y1 = y2;
+    }
+  }
+}
+// _____________________________________________________________________
+void sendTextPage(int page){
+  cmd(COLUMNADDR);  cmd(0);    cmd(127);   // Column start end
+  cmd(PAGEADDR);    cmd(page); cmd(page);  // Page start end
+
+
+  if(1306 == 1106){
+    cmd(0xB0 + page);//set page address
+    cmd(2 & 0xf);//set lower column address
+    cmd(0x10 | (2 >> 4));//set higher column address
+  }
+
+  
+  txbuf[0] = 0x40;
+  if(mode == 0){
+    calcTextPage(page, txbuf+1);
+    i2cMasterTransmitTimeout(&I2CD1, 0x3C, txbuf, 129, rxbuf, 0, 30);
+  } else if(mode == 1){
+    if(page==1)
+      for(int i=0;i<128;i++)
+	   tY[i]=((parent->instanceaxoctrlscope_i.t[i]+64)*3 )>>3;
+    calcScopePage(page, txbuf+1);
+    i2cMasterTransmitTimeout(&I2CD1, 0x3C, txbuf, 129, rxbuf, 0, 30);
+  }
+}
+// _____________________________________________________________________
+void init(){
+     // Init sequence
+  cmd(DISPLAYOFF);
+
+  // 2 byte cmd, low nibble A[3:0]+1 = div ratio, high nibble A[7:4] freq, reset 1000b 
+  cmd(SETDISPLAYCLOCKDIV); cmd(0x80);
+  cmd(SETMULTIPLEX);  cmd(LCDHEIGHT - 1);
+  cmd(SETDISPLAYOFFSET);  cmd(1306 == 1306 ? 0x00 : 0x01);
+  cmd(SETSTARTLINE_0);
+  cmd(CHARGEPUMP);     cmd(0x14);
+  cmd(MEMORYMODE);     cmd(0x00);
+  cmd(SEGREMAP | 0x1);
+  cmd(COMSCANDEC);
+// 128 x 64
+  cmd(SETCOMPINS);     cmd(0x12);
+  cmd(SETCONTRAST);    cmd(0xCF);
+  cmd(SETPRECHARGE);   cmd(0xF1);
+  cmd(SETVCOMDETECT);  cmd(0x40);
+  cmd(DISPLAYALLON_RESUME);
+  cmd(NORMALDISPLAY);
+  cmd(DEACTIVATE_SCROLL);
+  cmd(DISPLAYON);
+
+}
+// _____________________________________________________________________
+void setup(){
+  static uint8_t _txbuf[129] __attribute__ ((section (".sram2")));
+  static uint8_t _rxbuf[8] __attribute__ ((section (".sram2")));
+  txbuf = _txbuf;
+  rxbuf = _rxbuf;
+  init();
+}
+// _____________________________________________________________________
+void loop(){
+  uint8_t p[]={0,1,4,5,3,6,2,7};
+  sendTextPage(p[cpt % 8]);
+  cpt++;
+}
+// _____________________________________________________________________
+// THREADS
+msg_t ThreadX2()
+{
+  setup();
+  while (!chThdShouldTerminate()) {
+    loop();
+    chThdSleepMilliseconds(1);
+  }
+  chThdExit((msg_t)0);
+}
+
+static msg_t ThreadX(void *arg) {
+  ((instanceOLED128x64__1 *)arg)->ThreadX2();
+}
+
+WORKING_AREA(waThreadX, 1024);
+Thread *Thd;
+  public: void Init(attr_parent * _parent) {
+parent = _parent;
+cpt = 0;
+for(int i = 0; i < 11 * 4; i++){
+  text[i] = ' ';
+}
+
+
+// setup the pins
+palSetPadMode(GPIOB, 8, PAL_MODE_ALTERNATE(4)|PAL_STM32_PUDR_PULLUP|PAL_STM32_OTYPE_OPENDRAIN);// SCL
+palSetPadMode(GPIOB, 9, PAL_MODE_ALTERNATE(4)|PAL_STM32_PUDR_PULLUP|PAL_STM32_OTYPE_OPENDRAIN);// SDA
+static const I2CConfig i2cfg = {
+    OPMODE_I2C,
+    400000,
+    FAST_DUTY_CYCLE_2,
+};
+/*static const I2CConfig i2cfg = {
+    OPMODE_I2C,
+    100000,
+    STD_DUTY_CYCLE,
+};*/
+i2cStart(&I2CD1, &i2cfg);
+Thd = chThdCreateStatic(waThreadX, sizeof(waThreadX), NORMALPRIO, ThreadX, (void *)this);
+}
+  public: void Dispose() {
+chThdTerminate( Thd );
+chThdWait( Thd );
+i2cStop(&I2CD1);
+palSetPadMode(GPIOB, 8, PAL_MODE_INPUT_ANALOG);
+palSetPadMode(GPIOB, 9, PAL_MODE_INPUT_ANALOG);
+}
+  public: void dsp (const char * inlet_line1,
+const char * inlet_line2,
+const char * inlet_line3,
+const char * inlet_line4,
+const int32_t inlet_mode  ){
+mode = inlet_mode;
+
+
+if(inlet_line1 != NULL){
+  int i = 0;
+  while(i < 11 & inlet_line1[i] != '\0'){
+  	text[i] = inlet_line1[i];
+  	i++;
+  }
+  while(i < 11 ){text[i] = ' ';i++;}
+}
+if(mode==0){
+  if(inlet_line2 != NULL){
+    int i = 0;
+    while(i < 11 & inlet_line2[i] != '\0'){
+  	  text[i + 11] = inlet_line2[i];
+  	  i++;
+    }
+    while(i < 11 ){text[i+11] = ' ';i++;}
+  }
+  if(inlet_line3 != NULL){
+    int i = 0;
+    while(i < 11 & inlet_line3[i] != '\0'){
+  	  text[i + 2*11] = inlet_line3[i];
+  	  i++;
+    }
+    while(i < 11 ){text[i+2*11] = ' ';i++;}
+  }
+  if(inlet_line4 != NULL){
+    int i = 0;
+    while(i < 11 & inlet_line4[i] != '\0'){
+  	  text[i + 3*11] = inlet_line4[i];
+  	  i++;
+    }
+    while(i < 11 ){text[i+3*11] = ' ';i++;}
+  }
+}
+}
+}
+;class instanceLFO__mode__names{
+  public: // v1
+  attr_parent *parent;
+char c1[64];
+char c2[64];
+  public: void Init(attr_parent * _parent) {
+parent = _parent;
+strcpy(&c1[0],"FREE LFO");
+strcpy(&c2[0],"SYNCED LFO");
+}
+  public: void Dispose() {
+}
+  public: void dsp (char * & outlet_1,
+char * & outlet_2  ){
+outlet_1 = &c1[0];
+outlet_2 = &c2[0];
+}
+}
+;class instancemode_space_mux{
+  public: // v1
+  attr_parent *parent;
+  public: void Init(attr_parent * _parent) {
+parent = _parent;
+}
+  public: void Dispose() {
+}
+  public: void dsp (const char * inlet_i0,
+const char * inlet_i1,
+const int32_t inlet_sel,
+char * & outlet_out  ){
+if((inlet_sel&1)==0)
+outlet_out = (char *)inlet_i0;
+else
+outlet_out=(char *)inlet_i1;
+}
+}
+;class instanceform_space_long_space_pulse{
+  public: // v1
+  attr_parent *parent;
+KeyValuePair KVP_instanceform_space_long_space_pulse_delay;
+int32_t val;
+int ntrig;
+
+  public: void Init(attr_parent * _parent) {
+parent = _parent;
+parent->PExch[PARAM_INDEX_form_space_long_space_pulse_delay].pfunction = pfun_signed_clamp;
+  SetKVP_IPVP(&KVP_instanceform_space_long_space_pulse_delay,ObjectKvpRoot, "form long pulse" ,&parent->PExch[PARAM_INDEX_form_space_long_space_pulse_delay], -1<<27, 1<<27);
+  KVP_RegisterObject(&KVP_instanceform_space_long_space_pulse_delay);
+val = 0;
+ntrig = 0;
+
+}
+  public: void Dispose() {
+}
+  public: void dsp (const bool  inlet_trig,
+bool  & outlet_pulse,
+int param_delay  ){
+if ((inlet_trig > 0) && !ntrig) {
+  val = 1 << 30;
+  ntrig = 1;
+  outlet_pulse = 1;
+}
+else {
+  if (!(inlet_trig > 0))
+    ntrig = 0;
+  if (val>0) {
+    int32_t t;
+    MTOF(-param_delay,t);
+     val -= t>>3;
+     if (val<=0) outlet_pulse = 0;
+     else outlet_pulse = 1;
+  } else outlet_pulse = 0;
+}
+
+}
+}
+;class instanceload_space_startup{
+  public: // v1
+  attr_parent *parent;
+int32_t val;
+int ntrig;
+int a;
+  public: void Init(attr_parent * _parent) {
+parent = _parent;
+val = 0;
+ntrig = 0;
+a = 1;
+}
+  public: void Dispose() {
+}
+  public: void dsp (bool  & outlet_pulse  ){
+if ((a > 0) && !ntrig) {
+  ntrig = 1;
+  outlet_pulse = 1;
+}
+else {
+  if (!(a > 0))
+    ntrig = 0;
+ outlet_pulse = 0;
+}
+}
+}
+;class instanceinv__1{
+  public: // v1
+  attr_parent *parent;
+  public: void Init(attr_parent * _parent) {
+parent = _parent;
+}
+  public: void Dispose() {
+}
+  public: void dsp (const bool  inlet_i,
+bool  & outlet_o  ){
+outlet_o = (inlet_i>0)?0:1;
+
+}
+}
+;class instanceLFO__waveform__names{
+  public: // v1
+  attr_parent *parent;
+char c1[64];
+char c2[64];
+char c3[64];
+char c4[64];
+  public: void Init(attr_parent * _parent) {
+parent = _parent;
+strcpy(&c1[0],"LFO OFF");
+strcpy(&c2[0],"LFO SINE");
+strcpy(&c3[0],"LFO TRI");
+strcpy(&c4[0],"LFO SQUARE");
+}
+  public: void Dispose() {
+}
+  public: void dsp (char * & outlet_1,
+char * & outlet_2,
+char * & outlet_3,
+char * & outlet_4  ){
+outlet_1 = &c1[0];
+outlet_2 = &c2[0];
+outlet_3 = &c3[0];
+outlet_4 = &c4[0];
+}
+}
+;class instanceaxoctrlscope{
+  public: // v1
+  attr_parent *parent;
+int8_t t[128];
+int index;
+int32_t pval;
+float dc,lp1,lp2,lp3;
+float tlp[16];
+int32_t pin;
+  public: void Init(attr_parent * _parent,
+int8_t * disp_scope) {
+parent = _parent;
+{
+   int _i;
+   for(_i=0;_i<128;_i++)
+   disp_scope[_i] = 0;
+}
+int i;
+for(i = 0; i < 128; i++)
+  t[i] = 0;
+index = 0;
+pval = 0;
+lp1 = lp2 = lp3 = dc = 0.0f;
+pin = 0;
+for(i = 0; i < 16; i++) tlp[i] = 0.0f;
+}
+  public: void Dispose() {
+}
+  public: void dsp (const int32buffer  inlet_in,
+int8_t * disp_scope  ){
+int i;
+for(i=0;i<16;i++){
+	if(inlet_in[i]>0){
+	  tlp[i]=inlet_in[i];
+	}else{
+       tlp[i]=0.5f*inlet_in[i];
+	}
+}
+for(i=0;i<16;i++){
+	dc += 0.01f * (tlp[i] - dc);
+	lp1 += 0.01f * (tlp[i]-dc - lp1);
+	lp2 += 0.01f * (lp1 - lp2);
+	lp3 += 0.01f * (lp2 - lp3);
+	tlp[i] = lp3;
+}
+
+if (index<0) {
+   for(i=0;i<16;i++){
+      int32_t val = (tlp[i])>0;
+      if (val&&(!pval)){
+         index=0; break;
+      }
+      pval = val;
+   }
+   if (index == 0){
+      for(;i<16;i++){
+         t[index++]=(uint8_t)(inlet_in[i]>>21);
+      }
+   }
+} else {    for(i=0;i<16;i++){
+      if(index==128) {
+         index=-1;
+         break;
+      }
+      t[index++]=(uint8_t)(inlet_in[i]>>21);
+   }
+   if (index==-1){
+     for(i=0;i<128;i++)
+       disp_scope[i]=t[i];
+     pval = (tlp[BUFSIZE-1])>0;
+   }
+}
+}
+}
+;class instancemux__1{
+  public: // v1
+  attr_parent *parent;
+  public: void Init(attr_parent * _parent) {
+parent = _parent;
+}
+  public: void Dispose() {
+}
+  public: void dsp (const char * inlet_i0,
+const char * inlet_i1,
+const char * inlet_i2,
+const char * inlet_i3,
+const int32_t inlet_s,
+char * & outlet_o  ){
+   switch(inlet_s>0?inlet_s:0){
+      case 0: outlet_o= (char *)inlet_i0;break;
+      case 1: outlet_o= (char *)inlet_i1;break;
+      case 2: outlet_o= (char *)inlet_i2;break;
+      case 3: outlet_o= (char *)inlet_i3;break;
+      default: outlet_o= (char *)inlet_i3;break;
+}
+
+}
+}
+;class instanceOSC_space_SCOPE{
+  public: // v1
+  attr_parent *parent;
+int32buffer _inlet;
+
+  public: void Init(attr_parent * _parent) {
+parent = _parent;
+}
+  public: void Dispose() {
+}
+  public: void dsp (int32buffer  & outlet_inlet  ){
+int buffer_index;
+for(buffer_index=0;buffer_index<BUFSIZE;buffer_index++) {
+   outlet_inlet[buffer_index] = _inlet[buffer_index];
+}
+}
+}
+;class instancemux__4{
+  public: // v1
+  attr_parent *parent;
+  public: void Init(attr_parent * _parent) {
+parent = _parent;
+}
+  public: void Dispose() {
+}
+  public: void dsp (const char * inlet_i1,
+const char * inlet_i2,
+const bool  inlet_s,
+char * & outlet_o  ){
+   outlet_o= (inlet_s)?(char *)inlet_i2:(char *)inlet_i1;
+
+}
+}
+;class instancemux__5{
+  public: // v1
+  attr_parent *parent;
+  public: void Init(attr_parent * _parent) {
+parent = _parent;
+}
+  public: void Dispose() {
+}
+  public: void dsp (const char * inlet_i1,
+const char * inlet_i2,
+const bool  inlet_s,
+char * & outlet_o  ){
+   outlet_o= (inlet_s)?(char *)inlet_i2:(char *)inlet_i1;
+
+}
+}
+;/* controller instances */
+/* object instances */
+     instanceStart_space_up_space_line_space_1 instanceStart_space_up_space_line_space_1_i;
+     instanceStart_space_up_space_line_space_2 instanceStart_space_up_space_line_space_2_i;
+     instancePATCH_space_NAME instancePATCH_space_NAME_i;
+     instancePARAM instancePARAM_i;
+     instanceparam_space_trigger instanceparam_space_trigger_i;
+     instanceLFO__mode instanceLFO__mode_i;
+     instancemode_space_long_space_pulse instancemode_space_long_space_pulse_i;
+     instancepulselength__1 instancepulselength__1_i;
+     instancemux__3 instancemux__3_i;
+     instanceLFO__waveform instanceLFO__waveform_i;
+     instancemode_space_counter instancemode_space_counter_i;
+     instancexor_space_object instancexor_space_object_i;
+     instancemode_space_form_space_long_space_pulse instancemode_space_form_space_long_space_pulse_i;
+     instancemux__2 instancemux__2_i;
+     instanceform_space_counter instanceform_space_counter_i;
+     instanceOLED128x64__1 instanceOLED128x64__1_i;
+     instanceLFO__mode__names instanceLFO__mode__names_i;
+     instancemode_space_mux instancemode_space_mux_i;
+     instanceform_space_long_space_pulse instanceform_space_long_space_pulse_i;
+     instanceload_space_startup instanceload_space_startup_i;
+     instanceinv__1 instanceinv__1_i;
+     instanceLFO__waveform__names instanceLFO__waveform__names_i;
+     instanceaxoctrlscope instanceaxoctrlscope_i;
+     instancemux__1 instancemux__1_i;
+     instanceOSC_space_SCOPE instanceOSC_space_SCOPE_i;
+     instancemux__4 instancemux__4_i;
+     instancemux__5 instancemux__5_i;
+/* net latches */
+    bool  net10Latch;
+    char * net14Latch;
+    char * net15Latch;
+    char * net16Latch;
+    int32buffer  net17Latch;
+    bool  net20Latch;
+    char * net21Latch;
+    bool  net23Latch;
+static const int polyIndex = 0;
+   static int32_t * GetInitParams(void){
+      static const int32_t p[6]= {
+      90177536,
+      75497472,
+      4,
+      90177536,
+      4,
+      90177536
+      };
+      return (int32_t *)&p[0];
+   }   static const int32_t * GetPresets(void){
+      static const int32_t p[NPRESETS][NPRESET_ENTRIES][2] = {
+         {
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0}
+         },
+         {
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0}
+         },
+         {
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0}
+         },
+         {
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0}
+         },
+         {
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0}
+         },
+         {
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0}
+         },
+         {
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0}
+         },
+         {
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0}
+         }
+      };
+   return &p[0][0][0];
+   };
+void ApplyPreset(int index){
+   if (!index) {
+     int i;
+     int32_t *p = GetInitParams();
+     for(i=0;i<NPEXCH;i++){
+        PExParameterChange(&PExch[i],p[i],0xFFEF);
+     }
+   }
+   index--;
+   if (index < NPRESETS) {
+     PresetParamChange_t *pa = (PresetParamChange_t *)(GetPresets());
+     PresetParamChange_t *p = &pa[index*NPRESET_ENTRIES];
+       int i;
+       for(i=0;i<NPRESET_ENTRIES;i++){
+         PresetParamChange_t *pp = &p[i];
+         if ((pp->pexIndex>=0)&&(pp->pexIndex<NPEXCH)) {
+           PExParameterChange(&PExch[pp->pexIndex],pp->value,0xFFEF);         }
+         else break;
+       }
+   }
+}
+   static PExModulationTarget_t * GetModulationTable(void){
+    static const PExModulationTarget_t PExModulationSources[NMODULATIONSOURCES][NMODULATIONTARGETS] = 
+{{{-1,0},{-1,0},{-1,0},{-1,0},{-1,0},{-1,0},{-1,0},{-1,0}},
+{{-1,0},{-1,0},{-1,0},{-1,0},{-1,0},{-1,0},{-1,0},{-1,0}},
+{{-1,0},{-1,0},{-1,0},{-1,0},{-1,0},{-1,0},{-1,0},{-1,0}},
+{{-1,0},{-1,0},{-1,0},{-1,0},{-1,0},{-1,0},{-1,0},{-1,0}},
+{{-1,0},{-1,0},{-1,0},{-1,0},{-1,0},{-1,0},{-1,0},{-1,0}},
+{{-1,0},{-1,0},{-1,0},{-1,0},{-1,0},{-1,0},{-1,0},{-1,0}},
+{{-1,0},{-1,0},{-1,0},{-1,0},{-1,0},{-1,0},{-1,0},{-1,0}},
+{{-1,0},{-1,0},{-1,0},{-1,0},{-1,0},{-1,0},{-1,0},{-1,0}}};
+   return (PExModulationTarget_t *)&PExModulationSources[0][0];
+   };
+]]></code.declaration>
+         <code.init><![CDATA[   int i;
+   int j;
+   const int32_t *p;
+   p = GetInitParams();
+   for(j=0;j<6;j++){
+      PExch[j].value = p[j];
+      PExch[j].modvalue = p[j];
+      PExch[j].signals = 0;
+      PExch[j].pfunction = 0;
+   }
+   int32_t *pp = &PExModulationPrevVal[0][0];
+   for(j=0;j<attr_poly*NMODULATIONSOURCES;j++){
+      *pp = 0; pp++;
+   }
+     displayVector[0] = 0x446F7841;
+     displayVector[1] = 0;
+     displayVector[2] = 32;
+   instanceStart_space_up_space_line_space_1_i.Init(this );
+   instanceStart_space_up_space_line_space_2_i.Init(this );
+   instancePATCH_space_NAME_i.Init(this );
+   instancePARAM_i.Init(this );
+   instanceparam_space_trigger_i.Init(this );
+   instanceLFO__mode_i.Init(this );
+   instancemode_space_long_space_pulse_i.Init(this );
+   instancepulselength__1_i.Init(this );
+   instancemux__3_i.Init(this );
+   instanceLFO__waveform_i.Init(this );
+   instancemode_space_counter_i.Init(this );
+   instancexor_space_object_i.Init(this );
+   instancemode_space_form_space_long_space_pulse_i.Init(this );
+   instancemux__2_i.Init(this );
+   instanceform_space_counter_i.Init(this );
+   instanceOLED128x64__1_i.Init(this );
+   instanceLFO__mode__names_i.Init(this );
+   instancemode_space_mux_i.Init(this );
+   instanceform_space_long_space_pulse_i.Init(this );
+   instanceload_space_startup_i.Init(this );
+   instanceinv__1_i.Init(this );
+   instanceLFO__waveform__names_i.Init(this );
+   instanceaxoctrlscope_i.Init(this, (int8_t *)(&displayVector[3]) );
+   instancemux__1_i.Init(this );
+   instanceOSC_space_SCOPE_i.Init(this );
+   instancemux__4_i.Init(this );
+   instancemux__5_i.Init(this );
+      int k;
+      for (k = 0; k < NPEXCH; k++) {
+        if (PExch[k].pfunction){
+          (PExch[k].pfunction)(&PExch[k]);
+        } else {
+          PExch[k].finalvalue = PExch[k].value;
+        }
+      }
+]]></code.init>
+         <code.dispose><![CDATA[   instancemux__5_i.Dispose();
+   instancemux__4_i.Dispose();
+   instanceOSC_space_SCOPE_i.Dispose();
+   instancemux__1_i.Dispose();
+   instanceaxoctrlscope_i.Dispose();
+   instanceLFO__waveform__names_i.Dispose();
+   instanceinv__1_i.Dispose();
+   instanceload_space_startup_i.Dispose();
+   instanceform_space_long_space_pulse_i.Dispose();
+   instancemode_space_mux_i.Dispose();
+   instanceLFO__mode__names_i.Dispose();
+   instanceOLED128x64__1_i.Dispose();
+   instanceform_space_counter_i.Dispose();
+   instancemux__2_i.Dispose();
+   instancemode_space_form_space_long_space_pulse_i.Dispose();
+   instancexor_space_object_i.Dispose();
+   instancemode_space_counter_i.Dispose();
+   instanceLFO__waveform_i.Dispose();
+   instancemux__3_i.Dispose();
+   instancepulselength__1_i.Dispose();
+   instancemode_space_long_space_pulse_i.Dispose();
+   instanceLFO__mode_i.Dispose();
+   instanceparam_space_trigger_i.Dispose();
+   instancePARAM_i.Dispose();
+   instancePATCH_space_NAME_i.Dispose();
+   instanceStart_space_up_space_line_space_2_i.Dispose();
+   instanceStart_space_up_space_line_space_1_i.Dispose();
+]]></code.dispose>
+         <code.krate><![CDATA[int i; /*...*/
+   instancePATCH_space_NAME_i._inlet = (char *)inlet_PATCH_space_NAME;
+   instancePARAM_i._inlet = (char *)inlet_PARAM;
+   instanceparam_space_trigger_i._inlet = inlet_param_space_trigger;
+   instanceLFO__mode_i._inlet = inlet_LFO__mode;
+   instanceLFO__waveform_i._inlet = inlet_LFO__waveform;
+   for(i=0;i<BUFSIZE;i++) instanceOSC_space_SCOPE_i._inlet[i] = inlet_OSC_space_SCOPE[i];
+//--------- <nets> -----------//
+    char * net0;
+    char * net1;
+    char * net2;
+    char * net3;
+    int32_t net4;
+    bool  net5;
+    char * net6;
+    char * net7;
+    char * net8;
+    bool  net9;
+    bool  net10;
+    char * net11;
+    char * net12;
+    int32_t net13;
+    char * net14;
+    char * net15;
+    char * net16;
+    int32buffer  net17;
+    bool  net18;
+    bool  net19;
+    bool  net20;
+    char * net21;
+    bool  net22;
+    bool  net23;
+    char * net24;
+    char * net25;
+    bool  net26;
+    bool  net27;
+    char * net28;
+//--------- </nets> ----------//
+//--------- <zero> ----------//
+  int32_t UNCONNECTED_OUTPUT;
+  static const int32_t UNCONNECTED_INPUT=0;
+  static const int32buffer zerobuffer = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  int32buffer UNCONNECTED_OUTPUT_BUFFER;
+//--------- </zero> ----------//
+//--------- <controller calls> ----------//
+//--------- <object calls> ----------//
+  instanceStart_space_up_space_line_space_1_i.dsp(net6);
+  instanceStart_space_up_space_line_space_2_i.dsp(net7);
+  instancePATCH_space_NAME_i.dsp(net8);
+  instancePARAM_i.dsp(net28);
+  instanceparam_space_trigger_i.dsp(net26);
+  instanceLFO__mode_i.dsp(net9);
+  instancemode_space_long_space_pulse_i.dsp(net9, net18, PExch[PARAM_INDEX_mode_space_long_space_pulse_delay].finalvalue);
+  instancepulselength__1_i.dsp(net26, net27, PExch[PARAM_INDEX_pulselength__1_delay].finalvalue);
+  instancemux__3_i.dsp(net8, net14Latch, net10Latch, net24);
+  instanceLFO__waveform_i.dsp(net5);
+  instancemode_space_counter_i.dsp(net9, 0, net13, (bool &)UNCONNECTED_OUTPUT, PExch[PARAM_INDEX_mode_space_counter_maximum].finalvalue);
+  instancexor_space_object_i.dsp(net18, net20Latch, net10);
+  instancemode_space_form_space_long_space_pulse_i.dsp(net9, net19, PExch[PARAM_INDEX_mode_space_form_space_long_space_pulse_delay].finalvalue);
+  instancemux__2_i.dsp(net16Latch, net15Latch, net19, net14);
+  instanceform_space_counter_i.dsp(net5, 0, net4, (bool &)UNCONNECTED_OUTPUT, PExch[PARAM_INDEX_form_space_counter_maximum].finalvalue);
+  instanceOLED128x64__1_i.dsp(net21Latch, net6, net7, 0, (net23Latch?1:0));
+  instanceLFO__mode__names_i.dsp(net11, net12);
+  instancemode_space_mux_i.dsp(net11, net12, net13, net15);
+  instanceform_space_long_space_pulse_i.dsp(net5, net20, PExch[PARAM_INDEX_form_space_long_space_pulse_delay].finalvalue);
+  instanceload_space_startup_i.dsp(net22);
+  instanceinv__1_i.dsp(net22, net23);
+  instanceLFO__waveform__names_i.dsp(net0, net1, net2, net3);
+  instanceaxoctrlscope_i.dsp(net17Latch, (int8_t *)(&displayVector[3]));
+  instancemux__1_i.dsp(net0, net1, net2, net3, net4, net16);
+  instanceOSC_space_SCOPE_i.dsp(net17);
+  instancemux__4_i.dsp(net24, net28, net27, net25);
+  instancemux__5_i.dsp(net25, 0, net22, net21);
+//--------- </object calls> ----------//
+//--------- <net latch copy> ----------//
+net10Latch = net10;
+net14Latch = net14;
+net15Latch = net15;
+net16Latch = net16;
+   for(i=0;i<BUFSIZE;i++)
+      net17Latch[i]=net17[i];
+net20Latch = net20;
+net21Latch = net21;
+net23Latch = net23;
+//--------- </net latch copy> ----------//
+]]></code.krate>
+         <code.midihandler><![CDATA[if ( attr_mididevice > 0 && dev > 0 && attr_mididevice != dev) return;
+if ( attr_midiport > 0 && port > 0 && attr_midiport != port) return;
+]]></code.midihandler>
+      </object>
+   </patchobj>
+   <patchobj type="patch/object" uuid="d7b4ddec-dba2-4109-8d8e-c14c25f61ddd" name="obj_4" x="420" y="364">
+      <params/>
+      <attribs/>
+      <object id="patch/object" uuid="d7b4ddec-dba2-4109-8d8e-c14c25f61ddd">
+         <sDescription></sDescription>
+         <author>hohum_lab (berendkleinhaneveld)</author>
+         <license>undefined</license>
+         <inlets>
+            <bool32 name="button" description="button"/>
+         </inlets>
+         <outlets>
+            <bool32 name="short" description="short"/>
+            <bool32 name="long" description="long"/>
+         </outlets>
+         <displays/>
+         <params/>
+         <attribs/>
+         <includes/>
+         <depends/>
+         <code.declaration><![CDATA[    static const uint32_t NPEXCH = 0;
+    ParameterExchange_t PExch[NPEXCH];
+    int32_t displayVector[3];
+    static const uint32_t NPRESETS = 8;
+    static const uint32_t NPRESET_ENTRIES = 32;
+    static const uint32_t NMODULATIONSOURCES = 8;
+    static const uint32_t NMODULATIONTARGETS = 8;
+    int32_t PExModulationPrevVal[1][NMODULATIONSOURCES];
+/* modsource defines */
+/* parameter instance indices */
+/* controller classes */
+/* object classes */
+class instanceLong_space_press_space_val{
+  public: // v1
+  attr_parent *parent;
+  public: void Init(attr_parent * _parent) {
+parent = _parent;
+}
+  public: void Dispose() {
+}
+  public: void dsp (int32_t & outlet_out  ){
+outlet_out= 2;
+
+}
+}
+;class instancebutton{
+  public: // v1
+  attr_parent *parent;
+int32_t _inlet;
+
+  public: void Init(attr_parent * _parent) {
+parent = _parent;
+}
+  public: void Dispose() {
+}
+  public: void dsp (bool  & outlet_inlet  ){
+  outlet_inlet = _inlet;
+
+}
+}
+;class instanceclick__1{
+  public: // v1
+  attr_parent *parent;
+int tc;
+  public: void Init(attr_parent * _parent) {
+parent = _parent;
+}
+  public: void Dispose() {
+}
+  public: void dsp (const bool  inlet_gate,
+bool  & outlet_no,
+bool  & outlet_short,
+bool  & outlet_long,
+int32_t & outlet_stage  ){
+outlet_no = 0;
+outlet_short= 0;
+outlet_long = 0;
+
+if (inlet_gate) {
+	tc ++;
+	if (tc < 190) outlet_stage = 0;
+	if ((tc >= 190) && (tc < 3000)) outlet_stage= 1;
+	if ((tc >= 3000) && (tc < 6000)) outlet_stage = 2;
+}
+if (!inlet_gate ){
+if ((tc > 0) && (tc < 190)) outlet_no = 1;
+if ((tc >= 190) && (tc < 3000)) outlet_short= 1;
+if ((tc >= 3000) && (tc < 6000))  outlet_long = 1;
+tc = 0;
+outlet_stage = 0;
+}
+}
+}
+;class instanceshort{
+  public: // v1
+  attr_parent *parent;
+int32_t _outlet;
+
+  public: void Init(attr_parent * _parent) {
+parent = _parent;
+}
+  public: void Dispose() {
+}
+  public: void dsp (const bool  inlet_outlet  ){
+  _outlet = (char *)inlet_outlet;
+
+}
+}
+;class instance_eq__eq___1{
+  public: // v1
+  attr_parent *parent;
+  public: void Init(attr_parent * _parent) {
+parent = _parent;
+}
+  public: void Dispose() {
+}
+  public: void dsp (const int32_t inlet_in1,
+const int32_t inlet_in2,
+bool  & outlet_out  ){
+outlet_out= inlet_in1==inlet_in2 ;
+}
+}
+;class instancerising__1{
+  public: // v1
+  attr_parent *parent;
+bool _in=false;
+  public: void Init(attr_parent * _parent) {
+parent = _parent;
+}
+  public: void Dispose() {
+}
+  public: void dsp (const bool  inlet_in,
+bool  & outlet_trig  ){
+outlet_trig = inlet_in && !_in;
+_in = inlet_in;
+}
+}
+;class instancelong{
+  public: // v1
+  attr_parent *parent;
+int32_t _outlet;
+
+  public: void Init(attr_parent * _parent) {
+parent = _parent;
+}
+  public: void Dispose() {
+}
+  public: void dsp (const bool  inlet_outlet  ){
+  _outlet = (char *)inlet_outlet;
+
+}
+}
+;/* controller instances */
+/* object instances */
+     instanceLong_space_press_space_val instanceLong_space_press_space_val_i;
+     instancebutton instancebutton_i;
+     instanceclick__1 instanceclick__1_i;
+     instanceshort instanceshort_i;
+     instance_eq__eq___1 instance_eq__eq___1_i;
+     instancerising__1 instancerising__1_i;
+     instancelong instancelong_i;
+/* net latches */
+static const int polyIndex = 0;
+   static int32_t * GetInitParams(void){
+      static const int32_t p[0]= {
+      };
+      return (int32_t *)&p[0];
+   }   static const int32_t * GetPresets(void){
+      static const int32_t p[NPRESETS][NPRESET_ENTRIES][2] = {
+         {
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0}
+         },
+         {
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0}
+         },
+         {
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0}
+         },
+         {
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0}
+         },
+         {
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0}
+         },
+         {
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0}
+         },
+         {
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0}
+         },
+         {
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0}
+         }
+      };
+   return &p[0][0][0];
+   };
+void ApplyPreset(int index){
+   if (!index) {
+     int i;
+     int32_t *p = GetInitParams();
+     for(i=0;i<NPEXCH;i++){
+        PExParameterChange(&PExch[i],p[i],0xFFEF);
+     }
+   }
+   index--;
+   if (index < NPRESETS) {
+     PresetParamChange_t *pa = (PresetParamChange_t *)(GetPresets());
+     PresetParamChange_t *p = &pa[index*NPRESET_ENTRIES];
+       int i;
+       for(i=0;i<NPRESET_ENTRIES;i++){
+         PresetParamChange_t *pp = &p[i];
+         if ((pp->pexIndex>=0)&&(pp->pexIndex<NPEXCH)) {
+           PExParameterChange(&PExch[pp->pexIndex],pp->value,0xFFEF);         }
+         else break;
+       }
+   }
+}
+   static PExModulationTarget_t * GetModulationTable(void){
+    static const PExModulationTarget_t PExModulationSources[NMODULATIONSOURCES][NMODULATIONTARGETS] = 
+{{{-1,0},{-1,0},{-1,0},{-1,0},{-1,0},{-1,0},{-1,0},{-1,0}},
+{{-1,0},{-1,0},{-1,0},{-1,0},{-1,0},{-1,0},{-1,0},{-1,0}},
+{{-1,0},{-1,0},{-1,0},{-1,0},{-1,0},{-1,0},{-1,0},{-1,0}},
+{{-1,0},{-1,0},{-1,0},{-1,0},{-1,0},{-1,0},{-1,0},{-1,0}},
+{{-1,0},{-1,0},{-1,0},{-1,0},{-1,0},{-1,0},{-1,0},{-1,0}},
+{{-1,0},{-1,0},{-1,0},{-1,0},{-1,0},{-1,0},{-1,0},{-1,0}},
+{{-1,0},{-1,0},{-1,0},{-1,0},{-1,0},{-1,0},{-1,0},{-1,0}},
+{{-1,0},{-1,0},{-1,0},{-1,0},{-1,0},{-1,0},{-1,0},{-1,0}}};
+   return (PExModulationTarget_t *)&PExModulationSources[0][0];
+   };
+]]></code.declaration>
+         <code.init><![CDATA[   int i;
+   int j;
+   const int32_t *p;
+   p = GetInitParams();
+   for(j=0;j<0;j++){
+      PExch[j].value = p[j];
+      PExch[j].modvalue = p[j];
+      PExch[j].signals = 0;
+      PExch[j].pfunction = 0;
+   }
+   int32_t *pp = &PExModulationPrevVal[0][0];
+   for(j=0;j<attr_poly*NMODULATIONSOURCES;j++){
+      *pp = 0; pp++;
+   }
+     displayVector[0] = 0x446F7841;
+     displayVector[1] = 0;
+     displayVector[2] = 0;
+   instanceLong_space_press_space_val_i.Init(this );
+   instancebutton_i.Init(this );
+   instanceclick__1_i.Init(this );
+   instanceshort_i.Init(this );
+   instance_eq__eq___1_i.Init(this );
+   instancerising__1_i.Init(this );
+   instancelong_i.Init(this );
+      int k;
+      for (k = 0; k < NPEXCH; k++) {
+        if (PExch[k].pfunction){
+          (PExch[k].pfunction)(&PExch[k]);
+        } else {
+          PExch[k].finalvalue = PExch[k].value;
+        }
+      }
+]]></code.init>
+         <code.dispose><![CDATA[   instancelong_i.Dispose();
+   instancerising__1_i.Dispose();
+   instance_eq__eq___1_i.Dispose();
+   instanceshort_i.Dispose();
+   instanceclick__1_i.Dispose();
+   instancebutton_i.Dispose();
+   instanceLong_space_press_space_val_i.Dispose();
+]]></code.dispose>
+         <code.krate><![CDATA[int i; /*...*/
+   instancebutton_i._inlet = inlet_button;
+//--------- <nets> -----------//
+    int32_t net0;
+    int32_t net1;
+    bool  net2;
+    bool  net3;
+    bool  net4;
+    bool  net5;
+//--------- </nets> ----------//
+//--------- <zero> ----------//
+  int32_t UNCONNECTED_OUTPUT;
+  static const int32_t UNCONNECTED_INPUT=0;
+  static const int32buffer zerobuffer = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  int32buffer UNCONNECTED_OUTPUT_BUFFER;
+//--------- </zero> ----------//
+//--------- <controller calls> ----------//
+//--------- <object calls> ----------//
+  instanceLong_space_press_space_val_i.dsp(net1);
+  instancebutton_i.dsp(net3);
+  instanceclick__1_i.dsp(net3, (bool &)UNCONNECTED_OUTPUT, net2, (bool &)UNCONNECTED_OUTPUT, net0);
+  instanceshort_i.dsp(net2);
+  instance_eq__eq___1_i.dsp(net0, net1, net5);
+  instancerising__1_i.dsp(net5, net4);
+  instancelong_i.dsp(net4);
+//--------- </object calls> ----------//
+//--------- <net latch copy> ----------//
+//--------- </net latch copy> ----------//
+   outlet_short = instanceshort_i._outlet;
+   outlet_long = instancelong_i._outlet;
+]]></code.krate>
+         <code.midihandler><![CDATA[if ( attr_mididevice > 0 && dev > 0 && attr_mididevice != dev) return;
+if ( attr_midiport > 0 && port > 0 && attr_midiport != port) return;
+]]></code.midihandler>
+      </object>
+   </patchobj>
+   <nets>
+      <net>
+         <source obj="name_1" outlet="o1"/>
+         <dest obj="obj_2" inlet="PATCH NAME"/>
+      </net>
+      <net>
+         <source obj="obj_3" outlet="#4 BUT"/>
+         <dest obj="axoctrl_button_1" inlet="button"/>
+      </net>
+      <net>
+         <source obj="obj_3" outlet="#5 BUT"/>
+         <dest obj="axoctrl_button_2" inlet="button"/>
+      </net>
+      <net>
+         <source obj="c_2" outlet="out"/>
+         <dest obj="obj_2" inlet="PARAM"/>
+      </net>
+      <net>
+         <source obj="obj_3" outlet="#7 BUT"/>
+         <dest obj="obj_4" inlet="button"/>
+      </net>
+      <net>
+         <source obj="obj_4" outlet="long"/>
+         <dest obj="obj_2" inlet="LFO_mode"/>
+      </net>
+      <net>
+         <source obj="obj_4" outlet="short"/>
+         <dest obj="obj_2" inlet="LFO_waveform"/>
+      </net>
+      <net>
+         <source obj="obj_3" outlet="#6 BUT"/>
+         <dest obj="obj_2" inlet="param trigger"/>
+      </net>
+      <net>
+         <source obj="bankindex_2" outlet="index"/>
+         <dest obj="+1_1" inlet="a"/>
+         <dest obj="-1_1" inlet="a"/>
+      </net>
+      <net>
+         <source obj="+1_1" outlet="result"/>
+         <dest obj="load_2" inlet="i"/>
+      </net>
+      <net>
+         <source obj="-1_1" outlet="result"/>
+         <dest obj="load_3" inlet="i"/>
+      </net>
+      <net>
+         <source obj="axoctrl_button_2" outlet="long"/>
+         <dest obj="load_3" inlet="trig"/>
+      </net>
+      <net>
+         <source obj="axoctrl_button_1" outlet="long"/>
+         <dest obj="load_2" inlet="trig"/>
+      </net>
+   </nets>
+   <settings>
+      <subpatchmode>no</subpatchmode>
+   </settings>
+   <notes><![CDATA[]]></notes>
+   <windowPos>
+      <x>0</x>
+      <y>0</y>
+      <width>1920</width>
+      <height>1080</height>
+   </windowPos>
+</patch-1.0>

@@ -1,0 +1,2122 @@
+<patch-1.0 appVersion="1.0.12">
+   <obj type="string/c" uuid="4aa90a90c435a742ddfa152d232883fc5b2f1b3" name="c_1" x="210" y="14">
+      <params/>
+      <attribs>
+         <table attributeName="str" table="Violin"/>
+      </attribs>
+   </obj>
+   <obj type="disp/dial p" uuid="44fd18b562e434b3230441681132dbeabb15cdc5" name="dial_1" x="434" y="56">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="audio/out stereo" uuid="a1ca7a567f535acc21055669829101d3ee7f0189" name="dac_1" x="518" y="56">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="disp/dial p" uuid="44fd18b562e434b3230441681132dbeabb15cdc5" name="lfo " x="644" y="98">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="string/c5" uuid="20a4d45b-f310-4c2e-bfdc-b47754fc5679" name="c5_1" x="28" y="112">
+      <params/>
+      <attribs>
+         <table attributeName="1" table="xcream"/>
+         <table attributeName="2" table="Resonance"/>
+         <table attributeName="3" table="Del Mix"/>
+         <table attributeName="4" table="Del Fb"/>
+         <table attributeName="5" table="Ch Depth"/>
+      </attribs>
+   </obj>
+   <patcher type="patch/patcher" uuid="5ba742cc-5ba4-4c9a-bd33-2db5c5383724" name="obj_1" x="210" y="112">
+      <params>
+         <int32.hradio name="LFO vol on/off" value="1"/>
+      </params>
+      <attribs/>
+      <subpatch appVersion="1.0.12">
+         <comment type="patch/comment" x="84" y="28" text="Hohum Axoctrl"/>
+         <comment type="patch/comment" x="84" y="42" text="Main Axoctrl object for setting up patches with the Axoctrl"/>
+         <comment type="patch/comment" x="84" y="56" text="Features: built-in LFO (can be toggled), patch name display, custom parameter names + value on display, patch switching, etc."/>
+         <comment type="patch/comment" x="84" y="112" text="For more info on Axoctrl, please visit:"/>
+         <hyperlink type="patch/hyperlink" name="https://hohumlab.com" x="84" y="126"/>
+         <comment type="patch/comment" x="1092" y="126" text="Audio in"/>
+         <obj type="audio/in stereo" uuid="99848ad6d90a8e615e83b2e619cfc806f28e7281" name="IN_STEREO" x="1092" y="140">
+            <params/>
+            <attribs/>
+         </obj>
+         <obj type="patch/outlet a" uuid="abd8c5fd3b0524a6630f65cad6dc27f6c58e2a3e" name="IN_L" x="1176" y="140">
+            <params/>
+            <attribs/>
+         </obj>
+         <obj type="patch/outlet a" uuid="abd8c5fd3b0524a6630f65cad6dc27f6c58e2a3e" name="IN_R" x="1260" y="140">
+            <params/>
+            <attribs/>
+         </obj>
+         <obj type="patch/inlet string" uuid="6c562c1a7890cccf18fa7327d8baa476d0926cd8" name="PATCH" x="70" y="196">
+            <params/>
+            <attribs/>
+         </obj>
+         <comment type="patch/comment" x="728" y="238" text="Power on led"/>
+         <obj type="patch/inlet f" uuid="5c585d2dcd9c05631e345ac09626a22a639d7c13" name="#17 MOD" x="70" y="252">
+            <params/>
+            <attribs/>
+         </obj>
+         <obj type="const/i" uuid="e202f44b2df17ae0b3e663b98ea6b14c8ff00408" name="const_on" x="728" y="252">
+            <params/>
+            <attribs>
+               <spinner attributeName="value" value="1"/>
+            </attribs>
+         </obj>
+         <comment type="patch/comment" x="70" y="308" text="Custom names for parameters"/>
+         <obj type="patch/inlet string" uuid="6c562c1a7890cccf18fa7327d8baa476d0926cd8" name="PAR 8" x="70" y="322">
+            <params/>
+            <attribs/>
+         </obj>
+         <obj type="patch/inlet string" uuid="6c562c1a7890cccf18fa7327d8baa476d0926cd8" name="PAR 10" x="168" y="322">
+            <params/>
+            <attribs/>
+         </obj>
+         <obj type="patch/inlet string" uuid="6c562c1a7890cccf18fa7327d8baa476d0926cd8" name="PAR 11" x="266" y="322">
+            <params/>
+            <attribs/>
+         </obj>
+         <obj type="patch/inlet string" uuid="6c562c1a7890cccf18fa7327d8baa476d0926cd8" name="PAR 12" x="364" y="322">
+            <params/>
+            <attribs/>
+         </obj>
+         <obj type="patch/inlet string" uuid="6c562c1a7890cccf18fa7327d8baa476d0926cd8" name="PAR 13" x="462" y="322">
+            <params/>
+            <attribs/>
+         </obj>
+         <obj type="patch/inlet string" uuid="6c562c1a7890cccf18fa7327d8baa476d0926cd8" name="MOD 18" x="560" y="322">
+            <params/>
+            <attribs/>
+         </obj>
+         <obj type="hohum/control/axoctrl_core" uuid="aa397695-90d0-4c02-a41b-63be55411c67" name="axoctrl_core_obj" x="882" y="336">
+            <params/>
+            <attribs/>
+         </obj>
+         <comment type="patch/comment" x="1036" y="364" text="Prev patch / LFO sync divide"/>
+         <obj type="phi/logic/xor 4" uuid="4d70bbe27bfe5c2f07f9a80c0efda9ae9b8e771c" name="power led on off" x="672" y="378">
+            <params/>
+            <attribs/>
+         </obj>
+         <comment type="patch/comment" x="770" y="378" text="Midi active message"/>
+         <comment type="patch/comment" x="1036" y="378" text="Next patch / LFO sync multiply"/>
+         <comment type="patch/comment" x="812" y="392" text="LFO shape"/>
+         <obj type="hohum/disp/auto_muxer" uuid="544250aa-1432-46ea-9294-7367d4864a60" name="auto_muxer_1" x="1204" y="392">
+            <params/>
+            <attribs/>
+         </obj>
+         <obj type="logic/change" uuid="96e39ae624c3f3c952cec4a95e1986ee0104f718" name="change_1" x="1344" y="392">
+            <params/>
+            <attribs/>
+         </obj>
+         <comment type="patch/comment" x="1036" y="406" text="LFO waveshape / Sync LFO"/>
+         <comment type="patch/comment" x="1036" y="434" text="Output level"/>
+         <obj type="logic/change" uuid="96e39ae624c3f3c952cec4a95e1986ee0104f718" name="change_2" x="1344" y="434">
+            <params/>
+            <attribs/>
+         </obj>
+         <obj type="logic/or 2" uuid="3805d3c84d30032a44fbdbe42d9a2988a1790a3e" name="or_2" x="1428" y="434">
+            <params/>
+            <attribs/>
+         </obj>
+         <obj type="patch/send i" uuid="452e1d7a88de691f954015e6fec2f6994e1b35fc" name="send_par_value" x="1498" y="434">
+            <params/>
+            <attribs/>
+         </obj>
+         <obj type="patch/send i" uuid="452e1d7a88de691f954015e6fec2f6994e1b35fc" name="send_par_index" x="1568" y="434">
+            <params/>
+            <attribs/>
+         </obj>
+         <obj type="patch/inlet b" uuid="3b0d3eacb5bb978cb05d1372aa2714d5a4790844" name="MIDI_GATE" x="700" y="504">
+            <params/>
+            <attribs/>
+         </obj>
+         <obj type="logic/or 2" uuid="3805d3c84d30032a44fbdbe42d9a2988a1790a3e" name="axo_ctrl_or" x="784" y="504">
+            <params/>
+            <attribs/>
+         </obj>
+         <comment type="patch/comment" x="1036" y="504" text="LFO frequency"/>
+         <comment type="patch/comment" x="1036" y="518" text="LFO wave smoother"/>
+         <comment type="patch/comment" x="1036" y="532" text="LFO Intensity"/>
+         <obj type="jaffa/string/c4" uuid="e7c37b3e-e478-4967-8b0b-fc400c050e6a" name="param_names" x="182" y="588">
+            <params/>
+            <attribs>
+               <table attributeName="1" table="Volume"/>
+               <table attributeName="2" table="LFO Frequency"/>
+               <table attributeName="3" table="LFO Wave smoother"/>
+               <table attributeName="4" table="LFO Mix"/>
+            </attribs>
+         </obj>
+         <obj type="patch/recv i" uuid="c57c3fb0d08bcb566403f4fb43426338bd37ce1f" name="recv_2" x="378" y="588">
+            <params/>
+            <attribs>
+               <objref attributeName="sender" obj="send_par_index"/>
+            </attribs>
+         </obj>
+         <obj type="patch/recv i" uuid="c57c3fb0d08bcb566403f4fb43426338bd37ce1f" name="recv_1" x="462" y="588">
+            <params/>
+            <attribs>
+               <objref attributeName="sender" obj="send_par_value"/>
+            </attribs>
+         </obj>
+         <patchobj type="patch/object" uuid="577586e9-0932-4a00-b16d-c8847b4f99c0" name="param_muxer" x="630" y="588">
+            <params/>
+            <attribs/>
+            <object id="patch/object" uuid="577586e9-0932-4a00-b16d-c8847b4f99c0">
+               <sDescription></sDescription>
+               <inlets>
+                  <charptr32 name="inlet_1" description="inlet_1"/>
+                  <charptr32 name="inlet_2" description="inlet_2"/>
+                  <charptr32 name="inlet_3" description="inlet_3"/>
+                  <charptr32 name="inlet_4" description="inlet_4"/>
+                  <charptr32 name="inlet_5" description="inlet_5"/>
+                  <charptr32 name="inlet_6" description="inlet_6"/>
+                  <charptr32 name="inlet_7" description="inlet_7"/>
+                  <charptr32 name="inlet_8" description="inlet_8"/>
+                  <charptr32 name="inlet_9" description="inlet_9"/>
+                  <charptr32 name="inlet_10" description="inlet_10"/>
+                  <int32 name="index" description="index"/>
+                  <int32 name="value" description="value"/>
+               </inlets>
+               <outlets>
+                  <charptr32 name="outlet_1" description="outlet_1"/>
+               </outlets>
+               <displays/>
+               <params/>
+               <attribs/>
+               <includes/>
+               <depends/>
+               <code.declaration><![CDATA[static const uint32_t NPEXCH = 0;
+    ParameterExchange_t PExch[NPEXCH];
+    int32_t displayVector[3];
+    static const uint32_t NPRESETS = 8;
+    static const uint32_t NPRESET_ENTRIES = 32;
+    static const uint32_t NMODULATIONSOURCES = 8;
+    static const uint32_t NMODULATIONTARGETS = 8;
+    int32_t PExModulationPrevVal[1][NMODULATIONSOURCES];
+/* modsource defines */
+/* parameter instance indices */
+/* controller classes */
+/* object classes */
+class instanceinlet__1{
+  public: // v1
+  attr_parent *parent;
+char * _inlet;
+
+  public: void Init(attr_parent * _parent) {
+parent = _parent;
+}
+  public: void Dispose() {
+}
+  public: void dsp (char * & outlet_inlet  ){
+   outlet_inlet = (char *)_inlet;
+}
+}
+;class instanceinlet__2{
+  public: // v1
+  attr_parent *parent;
+char * _inlet;
+
+  public: void Init(attr_parent * _parent) {
+parent = _parent;
+}
+  public: void Dispose() {
+}
+  public: void dsp (char * & outlet_inlet  ){
+   outlet_inlet = (char *)_inlet;
+}
+}
+;class instanceinlet__3{
+  public: // v1
+  attr_parent *parent;
+char * _inlet;
+
+  public: void Init(attr_parent * _parent) {
+parent = _parent;
+}
+  public: void Dispose() {
+}
+  public: void dsp (char * & outlet_inlet  ){
+   outlet_inlet = (char *)_inlet;
+}
+}
+;class instanceinlet__4{
+  public: // v1
+  attr_parent *parent;
+char * _inlet;
+
+  public: void Init(attr_parent * _parent) {
+parent = _parent;
+}
+  public: void Dispose() {
+}
+  public: void dsp (char * & outlet_inlet  ){
+   outlet_inlet = (char *)_inlet;
+}
+}
+;class instanceinlet__5{
+  public: // v1
+  attr_parent *parent;
+char * _inlet;
+
+  public: void Init(attr_parent * _parent) {
+parent = _parent;
+}
+  public: void Dispose() {
+}
+  public: void dsp (char * & outlet_inlet  ){
+   outlet_inlet = (char *)_inlet;
+}
+}
+;class instanceinlet__6{
+  public: // v1
+  attr_parent *parent;
+char * _inlet;
+
+  public: void Init(attr_parent * _parent) {
+parent = _parent;
+}
+  public: void Dispose() {
+}
+  public: void dsp (char * & outlet_inlet  ){
+   outlet_inlet = (char *)_inlet;
+}
+}
+;class instanceinlet__7{
+  public: // v1
+  attr_parent *parent;
+char * _inlet;
+
+  public: void Init(attr_parent * _parent) {
+parent = _parent;
+}
+  public: void Dispose() {
+}
+  public: void dsp (char * & outlet_inlet  ){
+   outlet_inlet = (char *)_inlet;
+}
+}
+;class instanceinlet__8{
+  public: // v1
+  attr_parent *parent;
+char * _inlet;
+
+  public: void Init(attr_parent * _parent) {
+parent = _parent;
+}
+  public: void Dispose() {
+}
+  public: void dsp (char * & outlet_inlet  ){
+   outlet_inlet = (char *)_inlet;
+}
+}
+;class instanceinlet__9{
+  public: // v1
+  attr_parent *parent;
+char * _inlet;
+
+  public: void Init(attr_parent * _parent) {
+parent = _parent;
+}
+  public: void Dispose() {
+}
+  public: void dsp (char * & outlet_inlet  ){
+   outlet_inlet = (char *)_inlet;
+}
+}
+;class instanceinlet__10{
+  public: // v1
+  attr_parent *parent;
+char * _inlet;
+
+  public: void Init(attr_parent * _parent) {
+parent = _parent;
+}
+  public: void Dispose() {
+}
+  public: void dsp (char * & outlet_inlet  ){
+   outlet_inlet = (char *)_inlet;
+}
+}
+;class instanceindex{
+  public: // v1
+  attr_parent *parent;
+int32_t _inlet;
+
+  public: void Init(attr_parent * _parent) {
+parent = _parent;
+}
+  public: void Dispose() {
+}
+  public: void dsp (int32_t & outlet_inlet  ){
+  outlet_inlet = (char *)_inlet;
+
+}
+}
+;class instancevalue{
+  public: // v1
+  attr_parent *parent;
+int32_t _inlet;
+
+  public: void Init(attr_parent * _parent) {
+parent = _parent;
+}
+  public: void Dispose() {
+}
+  public: void dsp (int32_t & outlet_inlet  ){
+  outlet_inlet = (char *)_inlet;
+
+}
+}
+;class instancemux__1{
+  public: // v1
+  attr_parent *parent;
+  public: void Init(attr_parent * _parent) {
+parent = _parent;
+}
+  public: void Dispose() {
+}
+  public: void dsp (const char * inlet_i0,
+const char * inlet_i1,
+const char * inlet_i2,
+const char * inlet_i3,
+const char * inlet_i4,
+const char * inlet_i5,
+const char * inlet_i6,
+const char * inlet_i7,
+const char * inlet_i8,
+const char * inlet_i9,
+const int32_t inlet_s,
+char * & outlet_o  ){
+switch(inlet_s>0?inlet_s:0){
+      case 0: outlet_o= (char *)inlet_i0;break;
+      case 1: outlet_o= (char *)inlet_i1;break;
+      case 2: outlet_o= (char *)inlet_i2;break;
+      case 3: outlet_o= (char *)inlet_i3;break;
+      case 4: outlet_o= (char *)inlet_i4;break;
+      case 5: outlet_o= (char *)inlet_i5;break;
+      case 6: outlet_o= (char *)inlet_i6;break;
+      case 7: outlet_o= (char *)inlet_i7;break;
+      case 8: outlet_o= (char *)inlet_i8;break;
+      case 9: outlet_o= (char *)inlet_i9;break;
+      default: outlet_o= (char *)inlet_i0;break;
+}
+}
+}
+;class instanceparameter__to__text__1{
+  public: // v1
+  attr_parent *parent;
+char c[16];
+  public: void Init(attr_parent * _parent) {
+parent = _parent;
+}
+  public: void Dispose() {
+}
+  public: void dsp (const char * inlet_text,
+const int32_t inlet_value,
+char * & outlet_output  ){
+strncpy(&c[0], inlet_text, 7);
+for (int i = 0; i < 7; i++) {
+    if (c[i] == '\0') {
+        c[i] = ' ';
+    }
+}
+c[7] = ' ';
+c[8] = '0' + ((inlet_value / 100) % 10);
+c[9] = '0' + ((inlet_value / 10) % 10);
+c[10] = '0' + (inlet_value % 10);
+c[11] = '\0';
+outlet_output = &c[0];
+}
+}
+;class instanceoutlet__1{
+  public: // v1
+  attr_parent *parent;
+char * _outlet;
+
+  public: void Init(attr_parent * _parent) {
+parent = _parent;
+}
+  public: void Dispose() {
+}
+  public: void dsp (const char * inlet_outlet  ){
+   _outlet = (char *)_inlet_outlet;
+
+}
+}
+;/* controller instances */
+/* object instances */
+     instanceinlet__1 instanceinlet__1_i;
+     instanceinlet__2 instanceinlet__2_i;
+     instanceinlet__3 instanceinlet__3_i;
+     instanceinlet__4 instanceinlet__4_i;
+     instanceinlet__5 instanceinlet__5_i;
+     instanceinlet__6 instanceinlet__6_i;
+     instanceinlet__7 instanceinlet__7_i;
+     instanceinlet__8 instanceinlet__8_i;
+     instanceinlet__9 instanceinlet__9_i;
+     instanceinlet__10 instanceinlet__10_i;
+     instanceindex instanceindex_i;
+     instancevalue instancevalue_i;
+     instancemux__1 instancemux__1_i;
+     instanceparameter__to__text__1 instanceparameter__to__text__1_i;
+     instanceoutlet__1 instanceoutlet__1_i;
+/* net latches */
+static const int polyIndex = 0;
+   static int32_t * GetInitParams(void){
+      static const int32_t p[0]= {
+      };
+      return (int32_t *)&p[0];
+   }   static const int32_t * GetPresets(void){
+      static const int32_t p[NPRESETS][NPRESET_ENTRIES][2] = {
+         {
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0}
+         },
+         {
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0}
+         },
+         {
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0}
+         },
+         {
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0}
+         },
+         {
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0}
+         },
+         {
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0}
+         },
+         {
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0}
+         },
+         {
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0},
+           {-1,0}
+         }
+      };
+   return &p[0][0][0];
+   };
+void ApplyPreset(int index){
+   if (!index) {
+     int i;
+     int32_t *p = GetInitParams();
+     for(i=0;i<NPEXCH;i++){
+        PExParameterChange(&PExch[i],p[i],0xFFEF);
+     }
+   }
+   index--;
+   if (index < NPRESETS) {
+     PresetParamChange_t *pa = (PresetParamChange_t *)(GetPresets());
+     PresetParamChange_t *p = &pa[index*NPRESET_ENTRIES];
+       int i;
+       for(i=0;i<NPRESET_ENTRIES;i++){
+         PresetParamChange_t *pp = &p[i];
+         if ((pp->pexIndex>=0)&&(pp->pexIndex<NPEXCH)) {
+           PExParameterChange(&PExch[pp->pexIndex],pp->value,0xFFEF);         }
+         else break;
+       }
+   }
+}
+   static PExModulationTarget_t * GetModulationTable(void){
+    static const PExModulationTarget_t PExModulationSources[NMODULATIONSOURCES][NMODULATIONTARGETS] = 
+{{{-1,0},{-1,0},{-1,0},{-1,0},{-1,0},{-1,0},{-1,0},{-1,0}},
+{{-1,0},{-1,0},{-1,0},{-1,0},{-1,0},{-1,0},{-1,0},{-1,0}},
+{{-1,0},{-1,0},{-1,0},{-1,0},{-1,0},{-1,0},{-1,0},{-1,0}},
+{{-1,0},{-1,0},{-1,0},{-1,0},{-1,0},{-1,0},{-1,0},{-1,0}},
+{{-1,0},{-1,0},{-1,0},{-1,0},{-1,0},{-1,0},{-1,0},{-1,0}},
+{{-1,0},{-1,0},{-1,0},{-1,0},{-1,0},{-1,0},{-1,0},{-1,0}},
+{{-1,0},{-1,0},{-1,0},{-1,0},{-1,0},{-1,0},{-1,0},{-1,0}},
+{{-1,0},{-1,0},{-1,0},{-1,0},{-1,0},{-1,0},{-1,0},{-1,0}}};
+   return (PExModulationTarget_t *)&PExModulationSources[0][0];
+   };]]></code.declaration>
+               <code.init><![CDATA[   int i;
+   int j;
+   const int32_t *p;
+   p = GetInitParams();
+   for(j=0;j<0;j++){
+      PExch[j].value = p[j];
+      PExch[j].modvalue = p[j];
+      PExch[j].signals = 0;
+      PExch[j].pfunction = 0;
+   }
+   int32_t *pp = &PExModulationPrevVal[0][0];
+   for(j=0;j<attr_poly*NMODULATIONSOURCES;j++){
+      *pp = 0; pp++;
+   }
+     displayVector[0] = 0x446F7841;
+     displayVector[1] = 0;
+     displayVector[2] = 0;
+   instanceinlet__1_i.Init(this );
+   instanceinlet__2_i.Init(this );
+   instanceinlet__3_i.Init(this );
+   instanceinlet__4_i.Init(this );
+   instanceinlet__5_i.Init(this );
+   instanceinlet__6_i.Init(this );
+   instanceinlet__7_i.Init(this );
+   instanceinlet__8_i.Init(this );
+   instanceinlet__9_i.Init(this );
+   instanceinlet__10_i.Init(this );
+   instanceindex_i.Init(this );
+   instancevalue_i.Init(this );
+   instancemux__1_i.Init(this );
+   instanceparameter__to__text__1_i.Init(this );
+   instanceoutlet__1_i.Init(this );
+      int k;
+      for (k = 0; k < NPEXCH; k++) {
+        if (PExch[k].pfunction){
+          (PExch[k].pfunction)(&PExch[k]);
+        } else {
+          PExch[k].finalvalue = PExch[k].value;
+        }
+      }
+]]></code.init>
+               <code.dispose><![CDATA[   instanceoutlet__1_i.Dispose();
+   instanceparameter__to__text__1_i.Dispose();
+   instancemux__1_i.Dispose();
+   instancevalue_i.Dispose();
+   instanceindex_i.Dispose();
+   instanceinlet__10_i.Dispose();
+   instanceinlet__9_i.Dispose();
+   instanceinlet__8_i.Dispose();
+   instanceinlet__7_i.Dispose();
+   instanceinlet__6_i.Dispose();
+   instanceinlet__5_i.Dispose();
+   instanceinlet__4_i.Dispose();
+   instanceinlet__3_i.Dispose();
+   instanceinlet__2_i.Dispose();
+   instanceinlet__1_i.Dispose();
+]]></code.dispose>
+               <code.krate><![CDATA[int i; /*...*/
+   instanceinlet__1_i._inlet = (char *)inlet_inlet__1;
+   instanceinlet__2_i._inlet = (char *)inlet_inlet__2;
+   instanceinlet__3_i._inlet = (char *)inlet_inlet__3;
+   instanceinlet__4_i._inlet = (char *)inlet_inlet__4;
+   instanceinlet__5_i._inlet = (char *)inlet_inlet__5;
+   instanceinlet__6_i._inlet = (char *)inlet_inlet__6;
+   instanceinlet__7_i._inlet = (char *)inlet_inlet__7;
+   instanceinlet__8_i._inlet = (char *)inlet_inlet__8;
+   instanceinlet__9_i._inlet = (char *)inlet_inlet__9;
+   instanceinlet__10_i._inlet = (char *)inlet_inlet__10;
+   instanceindex_i._inlet = inlet_index;
+   instancevalue_i._inlet = inlet_value;
+//--------- <nets> -----------//
+    int32_t net0;
+    char * net1;
+    char * net2;
+    char * net3;
+    char * net4;
+    char * net5;
+    char * net6;
+    char * net7;
+    char * net8;
+    char * net9;
+    char * net10;
+    int32_t net11;
+    char * net12;
+    char * net13;
+//--------- </nets> ----------//
+//--------- <zero> ----------//
+  int32_t UNCONNECTED_OUTPUT;
+  static const int32_t UNCONNECTED_INPUT=0;
+  static const int32buffer zerobuffer = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  int32buffer UNCONNECTED_OUTPUT_BUFFER;
+//--------- </zero> ----------//
+//--------- <controller calls> ----------//
+//--------- <object calls> ----------//
+  instanceinlet__1_i.dsp(net1);
+  instanceinlet__2_i.dsp(net2);
+  instanceinlet__3_i.dsp(net3);
+  instanceinlet__4_i.dsp(net4);
+  instanceinlet__5_i.dsp(net5);
+  instanceinlet__6_i.dsp(net6);
+  instanceinlet__7_i.dsp(net7);
+  instanceinlet__8_i.dsp(net8);
+  instanceinlet__9_i.dsp(net9);
+  instanceinlet__10_i.dsp(net10);
+  instanceindex_i.dsp(net0);
+  instancevalue_i.dsp(net11);
+  instancemux__1_i.dsp(net1, net2, net3, net4, net5, net6, net7, net8, net9, net10, net0, net12);
+  instanceparameter__to__text__1_i.dsp(net12, net11, net13);
+  instanceoutlet__1_i.dsp(net13);
+//--------- </object calls> ----------//
+//--------- <net latch copy> ----------//
+//--------- </net latch copy> ----------//
+   outlet_outlet__1 = (char *)instanceoutlet__1_i._outlet;
+]]></code.krate>
+               <code.midihandler><![CDATA[if ( attr_mididevice > 0 && dev > 0 && attr_mididevice != dev) return;
+if ( attr_midiport > 0 && port > 0 && attr_midiport != port) return;
+]]></code.midihandler>
+            </object>
+         </patchobj>
+         <obj type="hohum/control/axoctrl_button" uuid="00f8c198-8cf2-46cd-ae5f-2567e3e4bf80" name="axo_switch_LFO_mode" x="1162" y="630">
+            <params/>
+            <attribs/>
+         </obj>
+         <obj type="hohum/disp/axoctrl_disp" uuid="8a7b91ac-9831-4822-8da6-1228224b5448" name="axoctrl_display" x="1400" y="630">
+            <params/>
+            <attribs/>
+         </obj>
+         <obj type="const/i" uuid="e202f44b2df17ae0b3e663b98ea6b14c8ff00408" name="i_1" x="1554" y="658">
+            <params/>
+            <attribs>
+               <spinner attributeName="value" value="64"/>
+            </attribs>
+         </obj>
+         <obj type="hohum/control/axoctrl_button" uuid="00f8c198-8cf2-46cd-ae5f-2567e3e4bf80" name="axo_switch_next" x="910" y="686">
+            <params/>
+            <attribs/>
+         </obj>
+         <obj type="hohum/lfo/axoctrl_lfo" uuid="6e0fe377-b672-441d-9880-5531047f3ca2" name="axo_lfa" x="1092" y="714">
+            <params/>
+            <attribs/>
+         </obj>
+         <obj type="hohum/control/axoctrl_button" uuid="00f8c198-8cf2-46cd-ae5f-2567e3e4bf80" name="axoswitch_prev" x="910" y="742">
+            <params/>
+            <attribs/>
+         </obj>
+         <obj type="ctrl/dial p" uuid="cc5d2846c3d50e425f450c4b9851371b54f4d674" name="mix_max" x="1302" y="756">
+            <params>
+               <frac32.u.map name="value" value="64.0"/>
+            </params>
+            <attribs/>
+         </obj>
+         <obj type="mix/xfade" uuid="bb87360199938d53d1183cdc80947ed0a39e3c9a" name="xfade_1" x="1372" y="756">
+            <params/>
+            <attribs/>
+         </obj>
+         <obj type="ctrl/i radio 2 h" uuid="965a945535a206a17296f000802fd0cfaf0e09e0" name="LFO vol on/off" x="1484" y="756">
+            <params>
+               <int32.hradio name="value" onParent="true" value="0"/>
+            </params>
+            <attribs/>
+         </obj>
+         <obj type="mux/mux 2" uuid="3bcb8a666381ed18b8962eda50b1aa679136f618" name="mux_1" x="1610" y="756">
+            <params/>
+            <attribs/>
+         </obj>
+         <obj type="hohum/control/axoctrl_switch" uuid="da392db6-f143-4f20-8299-dcb746feff83" name="axo_switch_prev_next" x="1092" y="826">
+            <params/>
+            <attribs/>
+         </obj>
+         <obj type="patch/outlet f" uuid="d18a9a550bcaaebac94e25983bd0e27dbfd7233c" name="LFO" x="1484" y="826">
+            <params/>
+            <attribs/>
+         </obj>
+         <obj type="patch/inlet a" uuid="b577fe41e0a6bc7b5502ce33cb8a3129e2e28ee5" name="OUT_L" x="1344" y="882">
+            <params/>
+            <attribs/>
+         </obj>
+         <obj type="patch/inlet a" uuid="b577fe41e0a6bc7b5502ce33cb8a3129e2e28ee5" name="OUT_R" x="1414" y="882">
+            <params/>
+            <attribs/>
+         </obj>
+         <obj type="hohum/mixer/axoctrl_mixer" uuid="106d56b8-f1bb-4e9e-9abe-4b1d68cec655" name="axo_mix" x="1484" y="882">
+            <params/>
+            <attribs/>
+         </obj>
+         <comment type="patch/comment" x="700" y="938" text="Custom button"/>
+         <comment type="patch/comment" x="812" y="938" text="Custom parameters"/>
+         <obj type="patch/outlet b" uuid="191792f616d4835dba0b55375474a12942e5bcbd" name="#6 BUT" x="700" y="952">
+            <params/>
+            <attribs/>
+         </obj>
+         <obj type="patch/outlet f" uuid="d18a9a550bcaaebac94e25983bd0e27dbfd7233c" name="#8 PAR" x="812" y="952">
+            <params/>
+            <attribs/>
+         </obj>
+         <obj type="patch/outlet f" uuid="d18a9a550bcaaebac94e25983bd0e27dbfd7233c" name="#10 PAR" x="896" y="952">
+            <params/>
+            <attribs/>
+         </obj>
+         <obj type="patch/outlet f" uuid="d18a9a550bcaaebac94e25983bd0e27dbfd7233c" name="#11 PAR" x="980" y="952">
+            <params/>
+            <attribs/>
+         </obj>
+         <obj type="patch/outlet f" uuid="d18a9a550bcaaebac94e25983bd0e27dbfd7233c" name="#12 PAR" x="1064" y="952">
+            <params/>
+            <attribs/>
+         </obj>
+         <obj type="patch/outlet f" uuid="d18a9a550bcaaebac94e25983bd0e27dbfd7233c" name="#13 PAR" x="1148" y="952">
+            <params/>
+            <attribs/>
+         </obj>
+         <obj type="patch/outlet f" uuid="d18a9a550bcaaebac94e25983bd0e27dbfd7233c" name="#18 MOD" x="812" y="994">
+            <params/>
+            <attribs/>
+         </obj>
+         <nets>
+            <net>
+               <source obj="axo_lfa" outlet="LFO OUT"/>
+               <dest obj="xfade_1" inlet="i2"/>
+            </net>
+            <net>
+               <source obj="OUT_R" outlet="inlet"/>
+               <dest obj="axo_mix" inlet="IN_R"/>
+            </net>
+            <net>
+               <source obj="OUT_L" outlet="inlet"/>
+               <dest obj="axo_mix" inlet="IN_L"/>
+            </net>
+            <net>
+               <source obj="xfade_1" outlet="o"/>
+               <dest obj="axoctrl_core_obj" inlet="#3 LED"/>
+               <dest obj="LFO" inlet="outlet"/>
+               <dest obj="mux_1" inlet="i1"/>
+            </net>
+            <net>
+               <source obj="MIDI_GATE" outlet="inlet"/>
+               <dest obj="axo_ctrl_or" inlet="i1"/>
+            </net>
+            <net>
+               <source obj="mix_max" outlet="out"/>
+               <dest obj="xfade_1" inlet="i1"/>
+            </net>
+            <net>
+               <source obj="PATCH" outlet="inlet"/>
+               <dest obj="axoctrl_display" inlet="PATCH NAME"/>
+            </net>
+            <net>
+               <source obj="axo_ctrl_or" outlet="o"/>
+               <dest obj="axoctrl_core_obj" inlet="#2 LED"/>
+            </net>
+            <net>
+               <source obj="axoctrl_core_obj" outlet="#16 PAR"/>
+               <dest obj="xfade_1" inlet="c"/>
+               <dest obj="auto_muxer_1" inlet="i9"/>
+            </net>
+            <net>
+               <source obj="axoctrl_core_obj" outlet="#14 PAR"/>
+               <dest obj="axo_lfa" inlet="TIME_PHASE"/>
+               <dest obj="auto_muxer_1" inlet="i7"/>
+            </net>
+            <net>
+               <source obj="axoctrl_core_obj" outlet="#15 PAR"/>
+               <dest obj="axo_lfa" inlet="SMOOTH"/>
+               <dest obj="auto_muxer_1" inlet="i8"/>
+            </net>
+            <net>
+               <source obj="axoctrl_core_obj" outlet="#4 BUT"/>
+               <dest obj="power led on off" inlet="i2"/>
+               <dest obj="axoswitch_prev" inlet="button"/>
+            </net>
+            <net>
+               <source obj="axoctrl_core_obj" outlet="#5 BUT"/>
+               <dest obj="power led on off" inlet="i3"/>
+               <dest obj="axo_switch_next" inlet="button"/>
+            </net>
+            <net>
+               <source obj="axoctrl_core_obj" outlet="#6 BUT"/>
+               <dest obj="axo_ctrl_or" inlet="i2"/>
+               <dest obj="#6 BUT" inlet="outlet"/>
+            </net>
+            <net>
+               <source obj="axoctrl_core_obj" outlet="#7 BUT"/>
+               <dest obj="axo_switch_LFO_mode" inlet="button"/>
+            </net>
+            <net>
+               <source obj="axoctrl_core_obj" outlet="#9 PAR"/>
+               <dest obj="axo_mix" inlet="VOL"/>
+               <dest obj="auto_muxer_1" inlet="i2"/>
+            </net>
+            <net>
+               <source obj="power led on off" outlet="o"/>
+               <dest obj="axoctrl_core_obj" inlet="#1 LED"/>
+            </net>
+            <net>
+               <source obj="const_on" outlet="out"/>
+               <dest obj="power led on off" inlet="i1"/>
+            </net>
+            <net>
+               <source obj="axo_mix" outlet="SIGNAL"/>
+               <dest obj="axoctrl_display" inlet="OSC SCOPE"/>
+            </net>
+            <net>
+               <source obj="axo_switch_next" outlet="long"/>
+               <dest obj="axo_switch_prev_next" inlet="next"/>
+            </net>
+            <net>
+               <source obj="axoswitch_prev" outlet="long"/>
+               <dest obj="axo_switch_prev_next" inlet="previous"/>
+            </net>
+            <net>
+               <source obj="axo_switch_next" outlet="short"/>
+               <dest obj="axo_lfa" inlet="LFO SYNC UP"/>
+            </net>
+            <net>
+               <source obj="axoswitch_prev" outlet="short"/>
+               <dest obj="axo_lfa" inlet="LFO SYNC DOWN"/>
+            </net>
+            <net>
+               <source obj="axo_switch_LFO_mode" outlet="short"/>
+               <dest obj="axo_lfa" inlet="WAVE"/>
+               <dest obj="axoctrl_display" inlet="LFO_waveform"/>
+            </net>
+            <net>
+               <source obj="axo_switch_LFO_mode" outlet="long"/>
+               <dest obj="axo_lfa" inlet="MODE"/>
+               <dest obj="axoctrl_display" inlet="LFO_mode"/>
+            </net>
+            <net>
+               <source obj="#17 MOD" outlet="inlet"/>
+               <dest obj="axoctrl_core_obj" inlet="#17 MOD"/>
+            </net>
+            <net>
+               <source obj="LFO vol on/off" outlet="out"/>
+               <dest obj="mux_1" inlet="s"/>
+            </net>
+            <net>
+               <source obj="i_1" outlet="out"/>
+               <dest obj="mux_1" inlet="i2"/>
+            </net>
+            <net>
+               <source obj="mux_1" outlet="o"/>
+               <dest obj="axo_mix" inlet="LFO"/>
+            </net>
+            <net>
+               <source obj="axoctrl_core_obj" outlet="#8 PAR"/>
+               <dest obj="#8 PAR" inlet="outlet"/>
+               <dest obj="auto_muxer_1" inlet="i1"/>
+            </net>
+            <net>
+               <source obj="axoctrl_core_obj" outlet="#10 PAR"/>
+               <dest obj="#10 PAR" inlet="outlet"/>
+               <dest obj="auto_muxer_1" inlet="i3"/>
+            </net>
+            <net>
+               <source obj="axoctrl_core_obj" outlet="#11 PAR"/>
+               <dest obj="#11 PAR" inlet="outlet"/>
+               <dest obj="auto_muxer_1" inlet="i4"/>
+            </net>
+            <net>
+               <source obj="axoctrl_core_obj" outlet="#12 PAR"/>
+               <dest obj="#12 PAR" inlet="outlet"/>
+               <dest obj="auto_muxer_1" inlet="i5"/>
+            </net>
+            <net>
+               <source obj="axoctrl_core_obj" outlet="#13 PAR"/>
+               <dest obj="#13 PAR" inlet="outlet"/>
+               <dest obj="auto_muxer_1" inlet="i6"/>
+            </net>
+            <net>
+               <source obj="axoctrl_core_obj" outlet="#18 MOD"/>
+               <dest obj="#18 MOD" inlet="outlet"/>
+               <dest obj="auto_muxer_1" inlet="i10"/>
+            </net>
+            <net>
+               <source obj="auto_muxer_1" outlet="out"/>
+               <dest obj="send_par_value" inlet="v"/>
+               <dest obj="change_1" inlet="in"/>
+            </net>
+            <net>
+               <source obj="auto_muxer_1" outlet="index"/>
+               <dest obj="send_par_index" inlet="v"/>
+               <dest obj="change_2" inlet="in"/>
+            </net>
+            <net>
+               <source obj="param_muxer" outlet="outlet_1"/>
+               <dest obj="axoctrl_display" inlet="PARAM"/>
+            </net>
+            <net>
+               <source obj="MOD 18" outlet="inlet"/>
+               <dest obj="param_muxer" inlet="inlet_10"/>
+            </net>
+            <net>
+               <source obj="param_names" outlet="1"/>
+               <dest obj="param_muxer" inlet="inlet_2"/>
+            </net>
+            <net>
+               <source obj="param_names" outlet="2"/>
+               <dest obj="param_muxer" inlet="inlet_7"/>
+            </net>
+            <net>
+               <source obj="param_names" outlet="3"/>
+               <dest obj="param_muxer" inlet="inlet_8"/>
+            </net>
+            <net>
+               <source obj="param_names" outlet="4"/>
+               <dest obj="param_muxer" inlet="inlet_9"/>
+            </net>
+            <net>
+               <source obj="PAR 8" outlet="inlet"/>
+               <dest obj="param_muxer" inlet="inlet_1"/>
+            </net>
+            <net>
+               <source obj="PAR 10" outlet="inlet"/>
+               <dest obj="param_muxer" inlet="inlet_3"/>
+            </net>
+            <net>
+               <source obj="PAR 11" outlet="inlet"/>
+               <dest obj="param_muxer" inlet="inlet_4"/>
+            </net>
+            <net>
+               <source obj="PAR 12" outlet="inlet"/>
+               <dest obj="param_muxer" inlet="inlet_5"/>
+            </net>
+            <net>
+               <source obj="PAR 13" outlet="inlet"/>
+               <dest obj="param_muxer" inlet="inlet_6"/>
+            </net>
+            <net>
+               <source obj="change_1" outlet="trig"/>
+               <dest obj="or_2" inlet="i1"/>
+            </net>
+            <net>
+               <source obj="change_2" outlet="trig"/>
+               <dest obj="or_2" inlet="i2"/>
+            </net>
+            <net>
+               <source obj="or_2" outlet="o"/>
+               <dest obj="axoctrl_display" inlet="param trigger"/>
+            </net>
+            <net>
+               <source obj="IN_STEREO" outlet="left"/>
+               <dest obj="IN_L" inlet="outlet"/>
+            </net>
+            <net>
+               <source obj="IN_STEREO" outlet="right"/>
+               <dest obj="IN_R" inlet="outlet"/>
+            </net>
+            <net>
+               <source obj="recv_2" outlet="v"/>
+               <dest obj="param_muxer" inlet="index"/>
+            </net>
+            <net>
+               <source obj="recv_1" outlet="v"/>
+               <dest obj="param_muxer" inlet="value"/>
+            </net>
+         </nets>
+         <settings>
+            <subpatchmode>no</subpatchmode>
+            <MidiChannel>1</MidiChannel>
+            <NPresets>8</NPresets>
+            <NPresetEntries>32</NPresetEntries>
+            <NModulationSources>8</NModulationSources>
+            <NModulationTargetsPerSource>8</NModulationTargetsPerSource>
+            <Author>hohum_lab (berendkleinhaneveld)</Author>
+            <License>GPL</License>
+         </settings>
+         <notes><![CDATA[]]></notes>
+         <windowPos>
+            <x>0</x>
+            <y>0</y>
+            <width>1803</width>
+            <height>1080</height>
+         </windowPos>
+      </subpatch>
+   </patcher>
+   <obj type="disp/dial p" uuid="44fd18b562e434b3230441681132dbeabb15cdc5" name="dial_2" x="434" y="140">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="disp/kscope 128 p" uuid="664f9317a38a6910ae9bc020e00ca2dd2ee692fa" name="kscope_1" x="644" y="182">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="disp/dial p" uuid="44fd18b562e434b3230441681132dbeabb15cdc5" name="dial_3" x="434" y="224">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="disp/dial p" uuid="44fd18b562e434b3230441681132dbeabb15cdc5" name="dial_5" x="532" y="252">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="disp/dial p" uuid="44fd18b562e434b3230441681132dbeabb15cdc5" name="dial_4" x="434" y="308">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="filter/bp svf" uuid="451629d3f559049e7f516d5014f3d5fa818827c7" name="bp_1" x="378" y="406">
+      <params>
+         <frac32.s.map name="pitch" value="13.0"/>
+         <frac32.u.map name="reso" value="29.0"/>
+      </params>
+      <attribs/>
+   </obj>
+   <patcher type="patch/patcher" uuid="265d8e3d-a06f-4afe-b1ce-b293da50d6cf" name="patcher_1" x="56" y="462">
+      <params>
+         <bool32.tgl name="toggle_1" value="0"/>
+         <frac32.u.map name="glide_1" value="22.5"/>
+         <frac32.u.map name="sensitivity" value="17.5"/>
+         <frac32.s.map name="ahd_1:a" value="5.0"/>
+         <frac32.s.map name="ahd_1:d" value="-40.0"/>
+         <frac32.u.map name="mix_1:gain1" value="2.5"/>
+      </params>
+      <attribs>
+         <combo attributeName="poly" selection="15"/>
+      </attribs>
+      <subpatch appVersion="1.0.12">
+         <obj type="ctrl/toggle" uuid="42b8134fa729d54bfc8d62d6ef3fa99498c1de99" name="toggle_1" x="14" y="112">
+            <params>
+               <bool32.tgl name="b" onParent="true" value="1"/>
+            </params>
+            <attribs/>
+         </obj>
+         <obj type="math/glide" uuid="cfa0324c7cc8ebfd6e03c6b92f41115e3172d0d9" name="glide_1" x="140" y="112">
+            <params>
+               <frac32.u.map name="time" onParent="true" value="48.5"/>
+            </params>
+            <attribs/>
+         </obj>
+         <obj type="matroe/math/vel sense" uuid="e96454bb-64ed-456b-a880-8a368798cfd4" name="vel_1" x="406" y="112">
+            <params/>
+            <attribs/>
+         </obj>
+         <obj type="ctrl/dial p" uuid="cc5d2846c3d50e425f450c4b9851371b54f4d674" name="sensitivity" x="308" y="126">
+            <params>
+               <frac32.u.map name="value" onParent="true" value="26.5"/>
+            </params>
+            <attribs/>
+         </obj>
+         <obj type="math/*" uuid="922423f2db9f222aa3e5ba095778288c446da47a" name="*_2" x="602" y="140">
+            <params/>
+            <attribs/>
+         </obj>
+         <obj type="midi/in/bend" uuid="7bd8cace52a8c26ed61d80f65e238408d5d621f4" name="bend_1" x="0" y="182">
+            <params/>
+            <attribs/>
+         </obj>
+         <obj type="math/half" uuid="d3aa9c64dbf1ec7871bbc3e2d8905f8e443c9823" name="half_1" x="406" y="210">
+            <params/>
+            <attribs/>
+         </obj>
+         <obj type="env/ahd" uuid="2139369d6de2ba5ddf76e602d1d25df653ca9eed" name="ahd_1" x="140" y="224">
+            <params>
+               <frac32.s.map name="a" onParent="true" value="19.0"/>
+               <frac32.s.map name="d" onParent="true" value="-8.0"/>
+            </params>
+            <attribs/>
+         </obj>
+         <obj type="gain/vca" uuid="a9f2dcd18043e2f47364e45cb8814f63c2a37c0d" name="vca_1" x="672" y="238">
+            <params/>
+            <attribs/>
+         </obj>
+         <obj type="midi/in/keyb" uuid="53b04874696932f38aceaa168bd5d9efb743716d" name="keyb_1" x="0" y="252">
+            <params/>
+            <attribs/>
+         </obj>
+         <obj type="mix/mix 3" uuid="7d947bff9b8466d81c2ddd49b4a7fb702302e05c" name="mix_1" x="280" y="252">
+            <params>
+               <frac32.u.map name="gain1" onParent="true" value="12.0"/>
+               <frac32.u.map name="gain2" value="0.5"/>
+               <frac32.u.map name="gain3" value="7.0"/>
+            </params>
+            <attribs/>
+         </obj>
+         <obj type="patch/outlet a" uuid="abd8c5fd3b0524a6630f65cad6dc27f6c58e2a3e" name="outlet_1" x="798" y="252">
+            <params/>
+            <attribs/>
+         </obj>
+         <obj type="osc/saw" uuid="739ecc36017ef3249479b8f01716b8bbfba9abc1" name="saw_1" x="392" y="266">
+            <params>
+               <frac32.s.map name="pitch" value="0.0"/>
+            </params>
+            <attribs/>
+         </obj>
+         <obj type="filter/vcf3" uuid="92455c652cd098cbb682a5497baa18abbf2ef865" name="vcf3_1" x="504" y="266">
+            <params>
+               <frac32.s.map name="pitch" value="9.0"/>
+               <frac32.u.map name="reso" value="2.0"/>
+            </params>
+            <attribs/>
+         </obj>
+         <obj type="lfo/sine" uuid="75f7330c26a13953215dccc3b7b9008545c9daa9" name="sine_1" x="84" y="378">
+            <params>
+               <frac32.s.map name="pitch" value="0.0"/>
+            </params>
+            <attribs/>
+         </obj>
+         <obj type="math/*" uuid="922423f2db9f222aa3e5ba095778288c446da47a" name="*_1" x="406" y="406">
+            <params/>
+            <attribs/>
+         </obj>
+         <obj type="math/div 4" uuid="507955275561b256e540f7205386d31545a2828f" name="div_1" x="308" y="420">
+            <params/>
+            <attribs/>
+         </obj>
+         <obj type="math/*" uuid="922423f2db9f222aa3e5ba095778288c446da47a" name="*_3" x="140" y="476">
+            <params/>
+            <attribs/>
+         </obj>
+         <obj type="env/d" uuid="190ae648e41832b41adbedb465317c18a010aefe" name="d_1" x="238" y="518">
+            <params>
+               <frac32.s.map name="d" value="39.0"/>
+            </params>
+            <attribs/>
+         </obj>
+         <obj type="drj/math/inv_pos" uuid="ae23d42592d86ae7d7f2202cb1124490774d118a" name="inv_pos_1" x="378" y="546">
+            <params/>
+            <attribs/>
+         </obj>
+         <obj type="rand/uniform f trig" uuid="223873125a332e3b8a82795a3eef167993adb086" name="uniform_1" x="14" y="560">
+            <params/>
+            <attribs/>
+         </obj>
+         <obj type="math/div 128" uuid="7e534ce0f62b1fddbad78a797d8c10c8d1a0b812" name="div_2" x="140" y="560">
+            <params/>
+            <attribs/>
+         </obj>
+         <nets>
+            <net>
+               <source obj="saw_1" outlet="wave"/>
+               <dest obj="vcf3_1" inlet="in"/>
+            </net>
+            <net>
+               <source obj="vcf3_1" outlet="out"/>
+               <dest obj="vca_1" inlet="a"/>
+            </net>
+            <net>
+               <source obj="keyb_1" outlet="gate2"/>
+               <dest obj="ahd_1" inlet="gate"/>
+               <dest obj="d_1" inlet="trig"/>
+            </net>
+            <net>
+               <source obj="mix_1" outlet="out"/>
+               <dest obj="saw_1" inlet="pitch"/>
+            </net>
+            <net>
+               <source obj="keyb_1" outlet="note"/>
+               <dest obj="half_1" inlet="in"/>
+               <dest obj="glide_1" inlet="in"/>
+            </net>
+            <net>
+               <source obj="sine_1" outlet="wave"/>
+               <dest obj="div_1" inlet="in"/>
+            </net>
+            <net>
+               <source obj="div_1" outlet="out"/>
+               <dest obj="*_1" inlet="a"/>
+            </net>
+            <net>
+               <source obj="*_1" outlet="result"/>
+               <dest obj="mix_1" inlet="in2"/>
+            </net>
+            <net>
+               <source obj="d_1" outlet="env"/>
+               <dest obj="inv_pos_1" inlet="in"/>
+            </net>
+            <net>
+               <source obj="inv_pos_1" outlet="out"/>
+               <dest obj="*_1" inlet="b"/>
+            </net>
+            <net>
+               <source obj="*_2" outlet="result"/>
+               <dest obj="vca_1" inlet="v"/>
+            </net>
+            <net>
+               <source obj="keyb_1" outlet="velocity"/>
+               <dest obj="*_3" inlet="b"/>
+               <dest obj="vel_1" inlet="vel"/>
+            </net>
+            <net>
+               <source obj="half_1" outlet="out"/>
+               <dest obj="vcf3_1" inlet="pitch"/>
+               <dest obj="*_3" inlet="a"/>
+            </net>
+            <net>
+               <source obj="*_3" outlet="result"/>
+               <dest obj="sine_1" inlet="pitch"/>
+            </net>
+            <net>
+               <source obj="glide_1" outlet="out"/>
+               <dest obj="mix_1" inlet="bus_in"/>
+            </net>
+            <net>
+               <source obj="toggle_1" outlet="o"/>
+               <dest obj="glide_1" inlet="en"/>
+            </net>
+            <net>
+               <source obj="bend_1" outlet="bend"/>
+               <dest obj="mix_1" inlet="in1"/>
+            </net>
+            <net>
+               <source obj="vca_1" outlet="o"/>
+               <dest obj="outlet_1" inlet="outlet"/>
+            </net>
+            <net>
+               <source obj="div_2" outlet="out"/>
+               <dest obj="mix_1" inlet="in3"/>
+            </net>
+            <net>
+               <source obj="uniform_1" outlet="rand"/>
+               <dest obj="div_2" inlet="in"/>
+            </net>
+            <net>
+               <source obj="keyb_1" outlet="gate"/>
+               <dest obj="uniform_1" inlet="trig"/>
+            </net>
+            <net>
+               <source obj="vel_1" outlet="result"/>
+               <dest obj="*_2" inlet="a"/>
+            </net>
+            <net>
+               <source obj="sensitivity" outlet="out"/>
+               <dest obj="vel_1" inlet="sensitivity"/>
+            </net>
+            <net>
+               <source obj="ahd_1" outlet="env"/>
+               <dest obj="*_2" inlet="b"/>
+               <dest obj="vel_1" inlet="envelope"/>
+            </net>
+         </nets>
+         <settings>
+            <subpatchmode>polyphonic</subpatchmode>
+            <MidiChannel>1</MidiChannel>
+            <NPresets>8</NPresets>
+            <NPresetEntries>32</NPresetEntries>
+            <NModulationSources>8</NModulationSources>
+            <NModulationTargetsPerSource>8</NModulationTargetsPerSource>
+         </settings>
+         <notes><![CDATA[]]></notes>
+         <windowPos>
+            <x>1986</x>
+            <y>190</y>
+            <width>1095</width>
+            <height>967</height>
+         </windowPos>
+      </subpatch>
+   </patcher>
+   <obj type="mix/mix 4" uuid="e6f9a0cc7aadc1b89516143cf1ccb79b3538d05a" name="mix_1" x="588" y="490">
+      <params>
+         <frac32.u.map name="gain1" value="48.5"/>
+         <frac32.u.map name="gain2" value="53.0"/>
+         <frac32.u.map name="gain3" value="50.5"/>
+         <frac32.u.map name="gain4" value="38.0"/>
+      </params>
+      <attribs/>
+   </obj>
+   <patchobj type="patch/object" uuid="bb817825-24ce-4f97-9cb7-30e5d180eddd" name="grainverb_1" x="700" y="490">
+      <params>
+         <frac32.u.map name="amount" value="24.0"/>
+         <frac32.u.map name="delay" value="0.5"/>
+         <frac32.u.map name="spread" value="37.0"/>
+         <frac32.u.map name="fdbk" value="9.0"/>
+      </params>
+      <attribs>
+         <combo attributeName="grains" selection="64"/>
+         <combo attributeName="grainlength" selection="4096"/>
+         <combo attributeName="window" selection="hanning"/>
+         <combo attributeName="size" selection="32768 (682ms)"/>
+      </attribs>
+      <object id="patch/object" uuid="bb817825-24ce-4f97-9cb7-30e5d180eddd">
+         <sDescription>granular reverb
+a granular delay with feedback</sDescription>
+         <author>Johannes Taelman</author>
+         <license>BSD</license>
+         <helpPatch>grainverb.axh</helpPatch>
+         <inlets>
+            <frac32buffer.bipolar name="in"/>
+            <frac32.bipolar name="delay"/>
+            <frac32.bipolar name="spread"/>
+         </inlets>
+         <outlets>
+            <frac32buffer name="l"/>
+            <frac32buffer name="r"/>
+         </outlets>
+         <displays/>
+         <params>
+            <frac32.u.map name="amount" description="dry/wet balance"/>
+            <frac32.u.map name="delay" description="pre-delay time">
+               <DefaultValue v="1.0"/>
+            </frac32.u.map>
+            <frac32.u.map name="spread" description="amount of random variation in grain delay">
+               <DefaultValue v="1.0"/>
+            </frac32.u.map>
+            <frac32.u.map name="fdbk" description="feedback - the sweet spot depends on window shape!">
+               <DefaultValue v="32.0"/>
+            </frac32.u.map>
+         </params>
+         <attribs>
+            <combo name="grains" description="number of simulatneous grains">
+               <MenuEntries>
+                  <string>16</string>
+                  <string>32</string>
+                  <string>64</string>
+                  <string>128</string>
+               </MenuEntries>
+               <CEntries>
+                  <string>16</string>
+                  <string>32</string>
+                  <string>64</string>
+                  <string>128</string>
+               </CEntries>
+            </combo>
+            <combo name="grainlength" description="length of each grain in samples">
+               <MenuEntries>
+                  <string>128</string>
+                  <string>256</string>
+                  <string>512</string>
+                  <string>1024</string>
+                  <string>2048</string>
+                  <string>4096</string>
+                  <string>8192</string>
+                  <string>16384</string>
+               </MenuEntries>
+               <CEntries>
+                  <string>128</string>
+                  <string>256</string>
+                  <string>512</string>
+                  <string>1024</string>
+                  <string>2048</string>
+                  <string>4096</string>
+                  <string>8192</string>
+                  <string>16384</string>
+               </CEntries>
+            </combo>
+            <combo name="window" description="window shape">
+               <MenuEntries>
+                  <string>triangle</string>
+                  <string>hanning</string>
+                  <string>smoothstep</string>
+                  <string>smoothstep_ext</string>
+               </MenuEntries>
+               <CEntries>
+                  <string>triangle</string>
+                  <string>hanning</string>
+                  <string>smoothstep</string>
+                  <string>smoothstep_ext</string>
+               </CEntries>
+            </combo>
+            <combo name="size" description="maximum delay in samples">
+               <MenuEntries>
+                  <string>8192 (170ms)</string>
+                  <string>16384 (341ms)</string>
+                  <string>32768 (682ms)</string>
+                  <string>65536 (1.36s)</string>
+                  <string>131072 (2.73s)</string>
+                  <string>262144 (5.46s)</string>
+                  <string>524288 (10.9s)</string>
+                  <string>1048576 (21.8s)</string>
+                  <string>2097152 (43.7s)</string>
+               </MenuEntries>
+               <CEntries>
+                  <string>13</string>
+                  <string>14</string>
+                  <string>15</string>
+                  <string>16</string>
+                  <string>17</string>
+                  <string>18</string>
+                  <string>19</string>
+                  <string>20</string>
+                  <string>21</string>
+               </CEntries>
+            </combo>
+         </attribs>
+         <includes/>
+         <code.declaration><![CDATA[static const uint32_t LENGTHPOW = (attr_size);
+static const uint32_t LENGTH = (1<<attr_size);
+static const uint32_t LENGTHMASK = ((1<<attr_size)-1);
+int16_t *array;
+uint32_t writepos;
+
+static const int ngrains = attr_grains;
+static const int attenuate_shift = attr_grains==128?6:attr_grains==64?5:attr_grains==32?4:3;
+static const int grainlength = attr_grainlength;
+// even distribution of grain phases
+static const int incr1 = (1ull<<32)/ngrains;
+static const int incr2 = ((1ull<<32)/(BUFSIZE*1024)) * ((BUFSIZE*BUFSIZE*1024/*ngrains*/)/grainlength);
+static const int iNewGrainsPerFrame = (ngrains*BUFSIZE)/grainlength;
+// to avoid division by zero warnings in inactive code...
+static const int iNewGrainsPerFrame1 = iNewGrainsPerFrame>0?iNewGrainsPerFrame:1;
+static const int attenuate_fdbk = (int32_t)(0x7FFFFFFF*0.58f*(
+				attr_grains==128?1.0f:
+				attr_grains==64?0.70710678f:
+				attr_grains==32?0.70710678f*0.70710678f:
+				0.70710678f*0.70710678f*0.70710678f));
+
+int32_t fdbk[BUFSIZE];
+
+int32_t * offsets[ngrains];
+int32_t prev_window[ngrains];
+int32_t phase=0;
+
+int32_t save_FMC_SDCR1;
+
+__attribute__( ( always_inline ) ) __STATIC_INLINE int32_t _SMLAWT (int32_t op1, int32_t op2, int32_t op3)
+{
+  int32_t result;  
+  __ASM volatile ("smlawt %0, %1, %2, %3" : "=r" (result) : "r" (op1), "r" (op2), "r" (op3));
+  return(result);
+}
+
+__attribute__( ( always_inline ) ) __STATIC_INLINE int32_t _SMLAWB (int32_t op1, int32_t op2, int32_t op3)
+{
+  int32_t result;  
+  __ASM volatile ("smlawb %0, %1, %2, %3" : "=r" (result) : "r" (op1), "r" (op2), "r" (op3));
+  return(result);
+}
+
+void setupDMACopy(int nwords) {
+	DMA2D->IFCR |= DMA2D_IFSR_CTEIF;
+	DMA2D->IFCR |= DMA2D_IFSR_CTCIF;
+	DMA2D->CR = 0;
+	DMA2D->FGPFCCR = 0;
+	DMA2D->OPFCCR = 0;
+	DMA2D->FGOR = 0;
+	DMA2D->OOR = 0;
+	DMA2D->NLR = 1 + (nwords<<16);
+}
+
+void initiateDMACopy(volatile int32_t * pDst, volatile int32_t * pSrc) {
+	DMA2D->FGMAR = (uint32_t)pSrc;
+	DMA2D->OMAR = (uint32_t)pDst;
+	DMA2D->CR |= DMA2D_CR_START;
+}
+
+void waitDMACopyComplete(){
+	while (DMA2D->CR & DMA2D_CR_START) {
+	}
+}
+
+int window_triangle(int phase){
+	int32_t x = phase;
+	x = x<0?~x:x;
+	return x>>3;
+}
+
+int window_smoothstep(int phase){
+	int32_t x = phase;
+	x = x<0?~x:x;
+	uint32_t _3_minus_2x = 0xC0000000 - x;
+	uint32_t x_squared = ___SMMUL(x,x);
+	return (_3_minus_2x*(uint64_t)x_squared)>>32;
+}
+
+int window_smoothstep_ext(int phase){
+	int32_t x = phase;
+	x = x<0?~x:x;
+	x = __SSAT(x,31)<<1;
+	uint32_t _3_minus_2x = 0xC0000000 - x;
+	uint32_t x_squared = ___SMMUL(x,x);
+	return (_3_minus_2x*(uint64_t)x_squared)>>32;
+}
+
+int window_hanning_ext(int phase){
+	int32_t x = phase;
+	x = x<0?~x:x;
+	x = __SSAT(x,31)<<1;
+	int32_t c = sin_q31(x - 0x40000000);
+	return 0x08000000 + (c>>4);
+}
+
+int window_hanning(int phase){
+	int32_t x = phase;
+	int32_t c = sin_q31(x - 0x40000000);
+	return 0x08000000 + (c>>4);
+}
+
+int window(int phase){
+	return window_attr_window(phase);
+}
+
+int32_t * getNewOffset(int delay, int spread) {
+	int32_t tpdf = (GenerateRandomNumber()>>(32-LENGTHPOW))+(GenerateRandomNumber()>>(32-LENGTHPOW));
+	int off = 2*__SMMLA(spread, tpdf, delay);
+	int lim = LENGTH - grainlength;
+	if (off >= lim){
+		off = lim - (off - lim);
+	}
+	if (off<0) {
+		off = -off;
+	}
+	return (int32_t *)&array[(writepos-off)&LENGTHMASK];
+}
+
+void simd16_env(int32_t *outp, int32_t a_new, int32_t a_prev, volatile int32_t *src){
+	int32_t ainc = (a_new-a_prev)>>4;
+	int32_t a = a_prev;
+	int i = BUFSIZE/2;
+	while(i--) {
+	// registers:
+	// 	*src
+	// 	s_s16_s16
+	// 	a 
+	// 	ainc
+	// 	i 
+	//   *inp
+	// 	x1
+	// 	x2
+		int32_t s_s16_s16 = *src++;
+		int32_t *inp = outp;
+		int32_t x1 = *inp++;
+		int32_t x2 = *inp;
+		x1 = _SMLAWB(a, s_s16_s16,x1);
+		a+=ainc;
+		x2 = _SMLAWT(a, s_s16_s16,x2);
+		a+=ainc;
+		*outp++ = x1;
+		*outp++ = x2;
+	}
+}]]></code.declaration>
+         <code.init><![CDATA[int i;
+static int16_t _array[attr_poly][LENGTH*2]  __attribute__ ((section (".sdram")));
+array = &_array[parent->polyIndex][0];
+writepos = 0;
+for(i=0;i<LENGTH*2;i++) array[i] = 0;
+
+// initialize DMA2D engine
+RCC->AHB1ENR |= RCC_AHB1ENR_DMA2DEN;
+RCC->AHB1RSTR |= RCC_AHB1RSTR_DMA2DRST;
+RCC->AHB1RSTR &= ~RCC_AHB1RSTR_DMA2DRST;
+
+for(i=0;i<ngrains;i++){
+	offsets[i] = (int32_t *)&array[0];
+	prev_window[i]=0;
+}
+for(i=0;i<BUFSIZE;i++){
+	fdbk[i]=0;
+}
+phase = 0;
+
+// enable SDRam read burst
+//FMC_Bank5_6->SDCR[0] |= FMC_SDCR1_RBURST;
+save_FMC_SDCR1 = *((uint32_t *)0xA0000140);
+*((uint32_t *)0xA0000140) |= 0x00001000;]]></code.init>
+         <code.dispose><![CDATA[*((uint32_t *)0xA0000140) = save_FMC_SDCR1;]]></code.dispose>
+         <code.krate><![CDATA[static int32_t dmabuf1[8] __attribute__ ((section (".sram2")));
+static int32_t dmabuf2[8] __attribute__ ((section (".sram2")));
+
+int i;
+writepos = (writepos + BUFSIZE)&LENGTHMASK;
+int16_t *parray = &array[writepos];
+for(i=0;i<BUFSIZE;i++){
+	*parray++ = __SSAT((fdbk[i]+inlet_in[i])>>12,16);
+}
+parray = &array[writepos]+LENGTH;
+for(i=0;i<BUFSIZE;i++){
+	*parray++ = __SSAT((fdbk[i]+inlet_in[i])>>12,16);
+}
+
+int32_t delay=__USAT(param_delay+inlet_delay,27)>>(28-LENGTHPOW);
+int32_t spread=__USAT(param_spread+inlet_spread,27)<<4;
+
+/*	
+// unfinished
+// search for next positive zerocrossing
+	int16_t *psample = &attr_table.array[off + 128 * BUFSIZE];
+	int j = 512;
+	while(j--){
+		if (*psample++ < 0) break;
+	}
+	j = 512;
+	while(j--){
+		if (*psample++ >= 0) break;
+	}
+	// align to middle of window
+	*psample -= 64 * BUFSIZE;
+	*psample -= index * 16;
+	offsets[(127-index)&0x7F] = (int32_t *)((int32_t)psample & 0xFFFFFFFC);
+*/
+
+/*
+example:
+	ngrains=16 
+	grainlength=8*BUFSIZE
+	iNewGrainsPerFrame=2
+
+  frame:0 1 2 3 4 5 6 7 8 9 A B C D E F
+grain:0 / - - - - - - \ / - - - - - - \
+	 1 \ / - - - - - - \ / - - - - - - 
+	 2 - \ / - - - - - - \ / - - - - -
+	 3 - - \ / - - - - - - \ / - - - -
+	 4 - - - \ / - - - - - - \ / - - -
+	 5 - - - - \ / - - - - - - \ / - - 
+	 6 - - - - - \ / - - - - - - \ / - 
+	 7 - - - - - - \ / - - - - - - \ / 
+	 8 / - - - - - - \ / - - - - - - \
+	 9 \ / - - - - - - \ / - - - - - - 
+	 A - \ / - - - - - - \ / - - - - -
+	 B - - \ / - - - - - - \ / - - - -
+	 C - - - \ / - - - - - - \ / - - -
+	 D - - - - \ / - - - - - - \ / - - 
+	 E - - - - - \ / - - - - - - \ / - 
+	 F - - - - - - \ / - - - - - - \ / 
+even grains on left output
+odd grains on right output
+*/
+
+if (iNewGrainsPerFrame) {
+	int index = ((uint32_t)phase)/((1ull<<32)/(ngrains/iNewGrainsPerFrame1));
+	for(i=0;i<iNewGrainsPerFrame;i++){
+		index += ngrains/iNewGrainsPerFrame1;
+		offsets[(0-index)&(ngrains-1)] = getNewOffset(delay,spread);
+	}
+} else {
+	if (!(phase & (incr1-1))) {
+		int index = ((uint32_t)phase)/((1ull<<32)/ngrains);
+		offsets[(0-index)&(ngrains-1)] = getNewOffset(delay,spread);
+	}
+}
+
+// every 32bit word contains 2 16bit samples
+setupDMACopy(BUFSIZE/2);
+
+// clear output buffers
+for(i=0;i<BUFSIZE;i++) {
+	outlet_l[i]=0;
+	outlet_r[i]=0;
+}
+
+int iGrain;
+int phl = phase;
+int32_t * * pGrain;
+pGrain = &offsets[0];
+int32_t *pPrevWindow = &prev_window[0];
+int32_t a1,a2;
+
+#if 1 // use DMA
+// loop lead-in
+waitDMACopyComplete();
+initiateDMACopy(&dmabuf2[0],*pGrain);
+*pGrain += BUFSIZE/2; pGrain++;
+// loop
+for(iGrain=1;iGrain<(ngrains-1);iGrain++){	
+// pingpong SDRAM to SRAM using DMA
+	waitDMACopyComplete();
+	initiateDMACopy(&dmabuf1[0],*pGrain);
+
+	*pGrain += BUFSIZE/2; pGrain++;
+	a1 = *pPrevWindow;
+	a2 = window(phl + incr2)>>attenuate_shift;
+	*pPrevWindow++ = a2;
+
+//	if (iGrain==1+(param_p1>>20))
+	simd16_env(&outlet_l[0], a2, a1, &dmabuf2[0]);
+
+	phl += incr1;
+
+	iGrain++;
+	waitDMACopyComplete();
+	initiateDMACopy(&dmabuf2[0],*pGrain);
+	*pGrain += BUFSIZE/2; pGrain++;
+
+	a1 = *pPrevWindow;
+	a2 = window(phl + incr2)>>attenuate_shift;
+	*pPrevWindow++ = a2;
+
+//	if (iGrain==1+(param_p1>>20))
+	simd16_env(&outlet_r[0], a2, a1, &dmabuf1[0]);
+
+	phl += incr1;
+}
+// loop lead-out
+waitDMACopyComplete();
+initiateDMACopy(&dmabuf1[0],*pGrain);
+*pGrain += BUFSIZE/2; pGrain++;
+a1 = *pPrevWindow;
+a2 = window(phl + incr2)>>attenuate_shift;
+*pPrevWindow++ = a2;
+simd16_env(&outlet_l[0], a2, a1, &dmabuf2[0]);
+phl += incr1;
+a1 = *pPrevWindow;
+a2 = window(phl + incr2)>>attenuate_shift;
+*pPrevWindow++ = a2;
+waitDMACopyComplete();
+simd16_env(&outlet_r[0], a2, a1, &dmabuf1[0]);
+
+#else // implementation without DMA copy
+for(iGrain=0;iGrain<ngrains;iGrain++){	
+	a1 = *pPrevWindow;
+	a2 = window(phl + incr2)>>attenuate_shift;
+	*pPrevWindow++ = a2;
+	simd16_env(&outlet_l[0], a2, a1, *pGrain);
+	*pGrain += BUFSIZE/2; pGrain++;
+	phl += incr1;
+	iGrain++;
+	a1 = *pPrevWindow;
+	a2 = window(phl + incr2)>>attenuate_shift;
+	*pPrevWindow++ = a2;
+	simd16_env(&outlet_r[0], a2, a1, *pGrain);
+	*pGrain += BUFSIZE/2; pGrain++;
+	phl += incr1;
+}
+#endif
+
+phase += incr2;
+
+int fdbka = ___SMMUL(param_fdbk,attenuate_fdbk)<<5;
+for(i=0;i<BUFSIZE;i++){
+	fdbk[i] = __SSAT(___SMMUL(fdbka,outlet_l[i]-outlet_r[i]),26)<<5;
+}
+
+int amt = param_amount<<4;
+int amtc = 0x7FFFFFFF-(param_amount<<4);
+
+for(i=0;i<BUFSIZE;i++){
+	outlet_l[i] = ___SMMLA(amt,outlet_l[i],___SMMUL(amtc,inlet_in[i]))<<1;
+	outlet_r[i] = ___SMMLA(amt,outlet_r[i],___SMMUL(amtc,inlet_in[i]))<<1;
+}]]></code.krate>
+      </object>
+   </patchobj>
+   <obj type="filter/hp" uuid="7829b56456e975f1d89bda2ad1c7ad678080a73b" name="hp_1" x="210" y="518">
+      <params>
+         <frac32.s.map name="pitch" value="-1.0"/>
+         <frac32.u.map name="reso" value="0.0"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="filter/bp svf" uuid="451629d3f559049e7f516d5014f3d5fa818827c7" name="bp_3" x="378" y="518">
+      <params>
+         <frac32.s.map name="pitch" value="-1.5"/>
+         <frac32.u.map name="reso" value="28.5"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="filter/bp svf" uuid="451629d3f559049e7f516d5014f3d5fa818827c7" name="bp_2" x="378" y="630">
+      <params>
+         <frac32.s.map name="pitch" value="39.0"/>
+         <frac32.u.map name="reso" value="20.5"/>
+      </params>
+      <attribs/>
+   </obj>
+   <nets>
+      <net>
+         <source obj="c_1" outlet="out"/>
+         <dest obj="obj_1" inlet="PATCH"/>
+      </net>
+      <net>
+         <source obj="obj_1" outlet="IN_L"/>
+         <dest obj="dac_1" inlet="left"/>
+      </net>
+      <net>
+         <source obj="obj_1" outlet="IN_R"/>
+         <dest obj="dac_1" inlet="right"/>
+      </net>
+      <net>
+         <source obj="obj_1" outlet="LFO"/>
+         <dest obj="lfo " inlet="in"/>
+      </net>
+      <net>
+         <source obj="obj_1" outlet="#8 PAR"/>
+         <dest obj="dial_5" inlet="in"/>
+      </net>
+      <net>
+         <source obj="obj_1" outlet="#10 PAR"/>
+         <dest obj="dial_1" inlet="in"/>
+      </net>
+      <net>
+         <source obj="obj_1" outlet="#11 PAR"/>
+         <dest obj="dial_2" inlet="in"/>
+      </net>
+      <net>
+         <source obj="obj_1" outlet="#12 PAR"/>
+         <dest obj="dial_3" inlet="in"/>
+      </net>
+      <net>
+         <source obj="obj_1" outlet="#13 PAR"/>
+         <dest obj="dial_4" inlet="in"/>
+      </net>
+      <net>
+         <source obj="c5_1" outlet="1"/>
+         <dest obj="obj_1" inlet="PAR 10"/>
+      </net>
+      <net>
+         <source obj="c5_1" outlet="2"/>
+         <dest obj="obj_1" inlet="PAR 11"/>
+      </net>
+      <net>
+         <source obj="c5_1" outlet="3"/>
+         <dest obj="obj_1" inlet="PAR 12"/>
+      </net>
+      <net>
+         <source obj="c5_1" outlet="4"/>
+         <dest obj="obj_1" inlet="PAR 13"/>
+      </net>
+      <net>
+         <source obj="c5_1" outlet="5"/>
+         <dest obj="obj_1" inlet="PAR 8"/>
+      </net>
+      <net>
+         <source obj="bp_3" outlet="out"/>
+         <dest obj="mix_1" inlet="in1"/>
+      </net>
+      <net>
+         <source obj="bp_1" outlet="out"/>
+         <dest obj="mix_1" inlet="in2"/>
+      </net>
+      <net>
+         <source obj="bp_2" outlet="out"/>
+         <dest obj="mix_1" inlet="in3"/>
+      </net>
+      <net>
+         <source obj="hp_1" outlet="out"/>
+         <dest obj="bp_3" inlet="in"/>
+         <dest obj="bp_1" inlet="in"/>
+         <dest obj="bp_2" inlet="in"/>
+      </net>
+      <net>
+         <source obj="mix_1" outlet="out"/>
+         <dest obj="grainverb_1" inlet="in"/>
+      </net>
+      <net>
+         <source obj="patcher_1" outlet="outlet_1"/>
+         <dest obj="hp_1" inlet="in"/>
+      </net>
+      <net>
+         <source obj="grainverb_1" outlet="l"/>
+         <dest obj="obj_1" inlet="OUT_L"/>
+      </net>
+      <net>
+         <source obj="grainverb_1" outlet="r"/>
+         <dest obj="obj_1" inlet="OUT_R"/>
+      </net>
+   </nets>
+   <settings>
+      <subpatchmode>no</subpatchmode>
+   </settings>
+   <notes><![CDATA[]]></notes>
+   <windowPos>
+      <x>1920</x>
+      <y>28</y>
+      <width>1280</width>
+      <height>996</height>
+   </windowPos>
+</patch-1.0>
