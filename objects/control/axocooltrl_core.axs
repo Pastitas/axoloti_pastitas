@@ -1,5 +1,5 @@
 <patch-1.0 appVersion="1.0.12">
-   <comment type="patch/comment" x="70" y="14" text="Hohum Axoctrl core"/>
+   <comment type="patch/comment" x="42" y="0" text="Hohum Axoctrl core"/>
    <comment type="patch/comment" x="70" y="28" text="Core object that exposes all ins and outs of the axoctrl board"/>
    <comment type="patch/comment" x="70" y="42" text="Use this directly if you want to build a fully custom patch without any of the other functionality."/>
    <comment type="patch/comment" x="322" y="70" text="Buttons"/>
@@ -140,7 +140,7 @@ pwmStart(&PWMD3, &pwmcfg);
          <combo attributeName="channel" selection="PB1 (ADC1_IN9)"/>
       </attribs>
    </obj>
-   <obj type="patch/outlet f" uuid="d18a9a550bcaaebac94e25983bd0e27dbfd7233c" name="#9 PAR" x="434" y="364">
+   <obj type="patch/outlet f" uuid="d18a9a550bcaaebac94e25983bd0e27dbfd7233c" name="VolumeKnob" x="434" y="364">
       <params/>
       <attribs/>
    </obj>
@@ -299,7 +299,7 @@ RCC->APB1ENR &= ~0x20000000;]]></code.dispose>
       </net>
       <net>
          <source obj="#9 PAR_PB1" outlet="out"/>
-         <dest obj="#9 PAR" inlet="outlet"/>
+         <dest obj="VolumeKnob" inlet="outlet"/>
       </net>
       <net>
          <source obj="#14 PAR_PC4" outlet="out"/>

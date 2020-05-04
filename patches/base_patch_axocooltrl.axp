@@ -1,0 +1,38 @@
+<patch-1.0 appVersion="1.0.12">
+   <obj type="lokki/patch/name" uuid="774cef6f-296b-47ec-b408-a9d177f1446b" name="Patch Name" x="294" y="42">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="drj/audio/stereo_vol" uuid="awc88e561967f018927f535acc6a1829101d1054" name="stereo_vol_1" x="700" y="56">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="audio/out stereo" uuid="a1ca7a567f535acc21055669829101d3ee7f0189" name="out_1" x="826" y="56">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="axocooltrl_core" uuid="d4e7ec43-a69e-41b7-b11c-79a6c4f19cd6" name="axocooltrl_core_1" x="308" y="112">
+      <params/>
+      <attribs/>
+   </obj>
+   <nets>
+      <net>
+         <source obj="stereo_vol_1" outlet="left"/>
+         <dest obj="out_1" inlet="left"/>
+      </net>
+      <net>
+         <source obj="stereo_vol_1" outlet="right"/>
+         <dest obj="out_1" inlet="right"/>
+      </net>
+   </nets>
+   <settings>
+      <subpatchmode>no</subpatchmode>
+   </settings>
+   <notes><![CDATA[]]></notes>
+   <windowPos>
+      <x>431</x>
+      <y>247</y>
+      <width>1069</width>
+      <height>694</height>
+   </windowPos>
+</patch-1.0>
