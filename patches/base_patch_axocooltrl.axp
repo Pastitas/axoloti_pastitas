@@ -11,7 +11,7 @@
       <params/>
       <attribs/>
    </obj>
-   <obj type="axocooltrl_core" uuid="d4e7ec43-a69e-41b7-b11c-79a6c4f19cd6" name="axocooltrl_core_1" x="196" y="98">
+   <obj type="control/axocooltrl_core" uuid="7b4e1596-d50a-435a-a864-819bd62b0369" name="obj_1" x="196" y="98">
       <params/>
       <attribs/>
    </obj>
