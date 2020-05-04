@@ -1,5 +1,5 @@
 <patch-1.0 appVersion="1.0.12">
-   <obj type="lokki/patch/name" uuid="774cef6f-296b-47ec-b408-a9d177f1446b" name="Patch Name" x="294" y="42">
+   <obj type="lokki/patch/name" uuid="774cef6f-296b-47ec-b408-a9d177f1446b" name="Patch Name" x="196" y="56">
       <params/>
       <attribs/>
    </obj>
@@ -11,7 +11,19 @@
       <params/>
       <attribs/>
    </obj>
-   <obj type="axocooltrl_core" uuid="d4e7ec43-a69e-41b7-b11c-79a6c4f19cd6" name="axocooltrl_core_1" x="308" y="112">
+   <obj type="axocooltrl_core" uuid="d4e7ec43-a69e-41b7-b11c-79a6c4f19cd6" name="axocooltrl_core_1" x="196" y="98">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="tiar/HW/OLED128x64" uuid="5bde8c3d-fe37-40b3-848e-edb192767bc8" name="OLED128x64_1" x="420" y="98">
+      <params/>
+      <attribs>
+         <objref attributeName="scope" obj="scope_1"/>
+         <combo attributeName="type" selection="SSD1306"/>
+         <combo attributeName="I2CADDR" selection="0x3C"/>
+      </attribs>
+   </obj>
+   <obj type="disp/scope 128 b" uuid="2b69f51a714fc276503ef10c349d6d253d1ae5e2" name="scope_1" x="700" y="154">
       <params/>
       <attribs/>
    </obj>
@@ -23,6 +35,10 @@
       <net>
          <source obj="stereo_vol_1" outlet="right"/>
          <dest obj="out_1" inlet="right"/>
+      </net>
+      <net>
+         <source obj="Patch Name" outlet="o1"/>
+         <dest obj="OLED128x64_1" inlet="line1"/>
       </net>
    </nets>
    <settings>
