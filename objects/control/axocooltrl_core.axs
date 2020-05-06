@@ -116,7 +116,7 @@ pwmStart(&PWMD3, &pwmcfg);
          <combo attributeName="channel" selection="PC2 (ADC1_IN12)"/>
       </attribs>
    </obj>
-   <obj type="control/encoder_1_pin" uuid="8592c3de-bc46-4278-9d35-2134f2afd0dd" name="obj_1" x="434" y="252">
+   <obj type="encoder_1_pin" uuid="55127e8f-0f8a-4b33-8766-bffc311fe269" name="encoder_1_pin_1" x="434" y="252">
       <params/>
       <attribs/>
    </obj>
@@ -323,18 +323,18 @@ RCC->APB1ENR &= ~0x20000000;]]></code.dispose>
       </net>
       <net>
          <source obj="#8 PAR_PC2" outlet="out"/>
-         <dest obj="obj_1" inlet="GPIO_in"/>
+         <dest obj="encoder_1_pin_1" inlet="GPIO_in"/>
       </net>
       <net>
-         <source obj="obj_1" outlet="mom"/>
+         <source obj="encoder_1_pin_1" outlet="mom"/>
          <dest obj="Enc_BUT" inlet="outlet"/>
       </net>
       <net>
-         <source obj="obj_1" outlet="trig"/>
+         <source obj="encoder_1_pin_1" outlet="trig"/>
          <dest obj="trig" inlet="outlet"/>
       </net>
       <net>
-         <source obj="obj_1" outlet="dir"/>
+         <source obj="encoder_1_pin_1" outlet="dir"/>
          <dest obj="dir" inlet="outlet"/>
       </net>
    </nets>

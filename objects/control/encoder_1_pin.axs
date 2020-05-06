@@ -12,7 +12,7 @@
    <obj type="deadsy/input/debounce1" uuid="dd7c32f9-81e3-4570-bea6-1e87c04029ed" name="debounce1_1" x="532" y="28">
       <params/>
       <attribs>
-         <spinner attributeName="period" value="2"/>
+         <spinner attributeName="period" value="3"/>
          <combo attributeName="mode" selection="fast 0 to 1"/>
       </attribs>
    </obj>
@@ -33,7 +33,7 @@
    <obj type="deadsy/input/debounce1" uuid="dd7c32f9-81e3-4570-bea6-1e87c04029ed" name="debounce1_2" x="532" y="112">
       <params/>
       <attribs>
-         <spinner attributeName="period" value="2"/>
+         <spinner attributeName="period" value="3"/>
          <combo attributeName="mode" selection="fast 0 to 1"/>
       </attribs>
    </obj>
@@ -58,7 +58,7 @@
    <obj type="deadsy/input/debounce1" uuid="dd7c32f9-81e3-4570-bea6-1e87c04029ed" name="debounce1_3" x="532" y="196">
       <params/>
       <attribs>
-         <spinner attributeName="period" value="2"/>
+         <spinner attributeName="period" value="3"/>
          <combo attributeName="mode" selection="fast 0 to 1"/>
       </attribs>
    </obj>
@@ -127,8 +127,8 @@
    </settings>
    <notes><![CDATA[]]></notes>
    <windowPos>
-      <x>1920</x>
-      <y>-1</y>
+      <x>640</x>
+      <y>28</y>
       <width>1280</width>
       <height>1025</height>
    </windowPos>
