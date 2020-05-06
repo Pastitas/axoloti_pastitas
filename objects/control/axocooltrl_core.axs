@@ -116,7 +116,7 @@ pwmStart(&PWMD3, &pwmcfg);
          <combo attributeName="channel" selection="PC2 (ADC1_IN12)"/>
       </attribs>
    </obj>
-   <obj type="encoder_1_pin" uuid="55127e8f-0f8a-4b33-8766-bffc311fe269" name="encoder_1_pin_1" x="434" y="252">
+   <obj type="control/encoder_1_pin" uuid="26417ba1-b86c-4e1d-9d7a-a42b7b050135" name="obj_1" x="434" y="252">
       <params/>
       <attribs/>
    </obj>
@@ -132,8 +132,8 @@ pwmStart(&PWMD3, &pwmcfg);
       <params/>
       <attribs/>
    </obj>
+   <comment type="patch/comment" x="84" y="322" text="Mod in"/>
    <comment type="patch/comment" x="322" y="336" text="Pots"/>
-   <comment type="patch/comment" x="84" y="364" text="Mod in"/>
    <obj type="gpio/in/analog" uuid="1c0c845ed2d7e06ae5f377ba13d9d09f4747ac87" name="#9 PAR_PB1" x="308" y="364">
       <params/>
       <attribs>
@@ -154,13 +154,13 @@ pwmStart(&PWMD3, &pwmcfg);
       <params/>
       <attribs/>
    </obj>
-   <obj type="gpio/in/analog" uuid="1c0c845ed2d7e06ae5f377ba13d9d09f4747ac87" name="#18 MOD_PA4" x="28" y="420">
+   <obj type="gpio/in/analog" uuid="1c0c845ed2d7e06ae5f377ba13d9d09f4747ac87" name="mod IN" x="28" y="378">
       <params/>
       <attribs>
          <combo attributeName="channel" selection="PA4 (ADC1_IN4)"/>
       </attribs>
    </obj>
-   <obj type="patch/outlet f" uuid="d18a9a550bcaaebac94e25983bd0e27dbfd7233c" name="#18 MOD" x="154" y="420">
+   <obj type="patch/outlet f" uuid="d18a9a550bcaaebac94e25983bd0e27dbfd7233c" name="MOD IN" x="154" y="378">
       <params/>
       <attribs/>
    </obj>
@@ -314,8 +314,8 @@ RCC->APB1ENR &= ~0x20000000;]]></code.dispose>
          <dest obj="#16 PAR" inlet="outlet"/>
       </net>
       <net>
-         <source obj="#18 MOD_PA4" outlet="out"/>
-         <dest obj="#18 MOD" inlet="outlet"/>
+         <source obj="mod IN" outlet="out"/>
+         <dest obj="MOD IN" inlet="outlet"/>
       </net>
       <net>
          <source obj="#17 MOD" outlet="inlet"/>
@@ -323,18 +323,18 @@ RCC->APB1ENR &= ~0x20000000;]]></code.dispose>
       </net>
       <net>
          <source obj="#8 PAR_PC2" outlet="out"/>
-         <dest obj="encoder_1_pin_1" inlet="GPIO_in"/>
+         <dest obj="obj_1" inlet="GPIO_in"/>
       </net>
       <net>
-         <source obj="encoder_1_pin_1" outlet="mom"/>
+         <source obj="obj_1" outlet="mom"/>
          <dest obj="Enc_BUT" inlet="outlet"/>
       </net>
       <net>
-         <source obj="encoder_1_pin_1" outlet="trig"/>
+         <source obj="obj_1" outlet="trig"/>
          <dest obj="trig" inlet="outlet"/>
       </net>
       <net>
-         <source obj="encoder_1_pin_1" outlet="dir"/>
+         <source obj="obj_1" outlet="dir"/>
          <dest obj="dir" inlet="outlet"/>
       </net>
    </nets>
@@ -352,8 +352,8 @@ RCC->APB1ENR &= ~0x20000000;]]></code.dispose>
    <notes><![CDATA[]]></notes>
    <windowPos>
       <x>305</x>
-      <y>34</y>
+      <y>33</y>
       <width>1101</width>
-      <height>900</height>
+      <height>901</height>
    </windowPos>
 </patch-1.0>
