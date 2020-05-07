@@ -116,7 +116,7 @@ pwmStart(&PWMD3, &pwmcfg);
          <combo attributeName="channel" selection="PC2 (ADC1_IN12)"/>
       </attribs>
    </obj>
-   <obj type="encoder_1_pin" uuid="dfa226a0-037f-4caa-88dd-a2ea91908d69" name="encoder_1_pin_1" x="434" y="252">
+   <obj type="control/encoder_1_pin" uuid="bad9f169-dbfa-4bcd-bca6-794f900e4110" name="encoder_1_pin_1" x="434" y="252">
       <params/>
       <attribs/>
    </obj>

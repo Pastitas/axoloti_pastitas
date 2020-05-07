@@ -3,7 +3,7 @@
       <params/>
       <attribs/>
    </obj>
-   <patcher type="patch/patcher" uuid="e9320afc-d897-40af-b886-53ab08ba9089" name="patcher_2" x="28" y="28">
+   <patcher type="patch/patcher" uuid="52eb5d67-1c88-492a-9e56-2f3aa1bb07b2" name="patcher_2" x="28" y="28">
       <params>
          <frac32.s.map name="Operator_1:fine tune" value="-2.0"/>
          <frac32.s.map name="Operator_1:sine_1" value="0.0"/>
@@ -34,7 +34,7 @@
          <frac32.u.map name="Operator_3:Env_Sens" value="20.5"/>
       </params>
       <attribs>
-         <combo attributeName="poly" selection="11"/>
+         <combo attributeName="poly" selection="12"/>
       </attribs>
       <subpatch appVersion="1.0.12">
          <obj type="math/inv" uuid="565521d3699b36d8095aa1c79b9ad0046fb133ce" name="inv_1" x="294" y="28">
@@ -61,11 +61,15 @@
             <params/>
             <attribs/>
          </obj>
+         <obj type="midi/in/keyb" uuid="53b04874696932f38aceaa168bd5d9efb743716d" name="keyb_1____tmp" x="28" y="126">
+            <params/>
+            <attribs/>
+         </obj>
          <obj type="midi/in/keyb" uuid="53b04874696932f38aceaa168bd5d9efb743716d" name="keyb_1" x="28" y="126">
             <params/>
             <attribs/>
          </obj>
-         <patcher type="patch/patcher" uuid="a518c15d-6eba-406e-aa8c-bc5db264d571" name="Operator_1" x="140" y="126">
+         <patcher type="patch/patcher" uuid="498f4d4d-30ab-4a2c-b31e-4476da2df4f4" name="Operator_1" x="140" y="126">
             <params>
                <frac32.s.map name="fine tune" onParent="true" value="0.0"/>
                <frac32.s.map name="sine_1" onParent="true" value="0.0"/>
@@ -246,7 +250,7 @@
                </windowPos>
             </subpatch>
          </patcher>
-         <patcher type="patch/patcher" uuid="a609cac8-22b6-4c6e-a890-f7d24d1ec5d1" name="Operator_2" x="252" y="126">
+         <patcher type="patch/patcher" uuid="200dd757-1be0-4c2e-829b-7fd915ba635b" name="Operator_2" x="252" y="126">
             <params>
                <frac32.s.map name="fine tune" onParent="true" value="0.0"/>
                <frac32.s.map name="sine_1" onParent="true" value="0.0"/>
@@ -427,7 +431,7 @@
                </windowPos>
             </subpatch>
          </patcher>
-         <patcher type="patch/patcher" uuid="12f09d6f-ee94-495d-9e27-9e1ac7697f9f" name="Operator_3" x="392" y="126">
+         <patcher type="patch/patcher" uuid="fb53c597-fb63-44e7-bcae-e334b7487529" name="Operator_3" x="392" y="126">
             <params>
                <frac32.s.map name="fine tune" onParent="true" value="0.0"/>
                <frac32.s.map name="sine_1" onParent="true" value="0.0"/>
@@ -622,19 +626,19 @@
          </obj>
          <nets>
             <net>
-               <source obj="keyb_1" outlet="velocity"/>
+               <source obj="keyb_1____tmp" outlet="velocity"/>
                <dest obj="Operator_2" inlet="Velocity"/>
                <dest obj="Operator_3" inlet="Velocity"/>
                <dest obj="Operator_1" inlet="Velocity"/>
             </net>
             <net>
-               <source obj="keyb_1" outlet="gate2"/>
+               <source obj="keyb_1____tmp" outlet="gate2"/>
                <dest obj="Operator_2" inlet="Gate"/>
                <dest obj="Operator_3" inlet="Gate"/>
                <dest obj="Operator_1" inlet="Gate"/>
             </net>
             <net>
-               <source obj="keyb_1" outlet="note"/>
+               <source obj="keyb_1____tmp" outlet="note"/>
                <dest obj="pan_1" inlet="c"/>
                <dest obj="Operator_2" inlet="Note"/>
                <dest obj="Operator_3" inlet="Note"/>
@@ -694,7 +698,7 @@
          <notes><![CDATA[]]></notes>
          <windowPos>
             <x>286</x>
-            <y>315</y>
+            <y>146</y>
             <width>1099</width>
             <height>934</height>
          </windowPos>
@@ -788,7 +792,7 @@
          <combo attributeName="I2CADDR" selection="0x3C"/>
       </attribs>
    </obj>
-   <obj type="axocooltrl_core" uuid="bffe7763-0457-4f20-aa4e-b8cd8ff9d449" name="axocooltrl_core_1" x="574" y="532">
+   <obj type="control/axocooltrl_core" uuid="2c956497-b3d5-4c4b-970b-2a85479ff2c9" name="obj_1" x="574" y="532">
       <params/>
       <attribs/>
    </obj>
@@ -798,18 +802,29 @@
    </obj>
    <obj type="ctrl/toggle" uuid="42b8134fa729d54bfc8d62d6ef3fa99498c1de99" name="toggle_1" x="294" y="602">
       <params>
-         <bool32.tgl name="b" value="0"/>
+         <bool32.tgl name="b" value="1"/>
       </params>
       <attribs/>
    </obj>
-   <obj type="disp/scope 128 b" uuid="2b69f51a714fc276503ef10c349d6d253d1ae5e2" name="scope_1" x="812" y="602">
+   <obj type="tiar/HW/scopeForOLED" uuid="070f2d96-ebbb-40e4-b870-0c5aa01dc8e7" name="scope_1" x="812" y="602">
       <params/>
       <attribs/>
    </obj>
-   <obj type="midi/intern/cc" uuid="554fe07ecd943d2ffd8f7435cae99550f8da1fde" name="cc_1" x="434" y="686">
+   <patchobj type="patch/object" uuid="cee1243a-b3e1-490f-b346-c0e33b41afff" name="object_1" x="420" y="686">
+      <params/>
+      <attribs/>
+      <object id="patch/object" uuid="cee1243a-b3e1-490f-b346-c0e33b41afff">
+         <inlets/>
+         <outlets/>
+         <displays/>
+         <params/>
+         <attribs/>
+         <includes/>
+      </object>
+   </patchobj>
+   <obj type="midi/inter/cc" uuid="722f009a-971a-4785-a140-0227876ea344" name="cc_1" x="420" y="686">
       <params/>
       <attribs>
-         <spinner attributeName="channel" value="1"/>
          <spinner attributeName="cc" value="64"/>
       </attribs>
    </obj>
@@ -821,10 +836,12 @@
       <net>
          <source obj="stereo_vol_1" outlet="left"/>
          <dest obj="out_1" inlet="left"/>
+         <dest obj="mix_1" inlet="l"/>
       </net>
       <net>
          <source obj="stereo_vol_1" outlet="right"/>
          <dest obj="out_1" inlet="right"/>
+         <dest obj="mix_1" inlet="r"/>
       </net>
       <net>
          <source obj="patcher_2" outlet="Right_out"/>
@@ -836,7 +853,6 @@
       </net>
       <net>
          <source obj="*c_1" outlet="out"/>
-         <dest obj="mix_1" inlet="l"/>
          <dest obj="stereo_vol_1" inlet="left"/>
       </net>
       <net>
@@ -845,7 +861,6 @@
       </net>
       <net>
          <source obj="*c_2" outlet="out"/>
-         <dest obj="mix_1" inlet="r"/>
          <dest obj="stereo_vol_1" inlet="right"/>
       </net>
       <net>
@@ -869,7 +884,7 @@
          <dest obj="DPSoftClip_1" inlet="in"/>
       </net>
       <net>
-         <source obj="axocooltrl_core_1" outlet="VolumeKnob"/>
+         <source obj="obj_1" outlet="VolumeKnob"/>
          <dest obj="stereo_vol_1" inlet="volume"/>
       </net>
       <net>
@@ -877,21 +892,17 @@
          <dest obj="OLED128x64_1" inlet="line1"/>
       </net>
       <net>
-         <source obj="mix_1" outlet="out"/>
-         <dest obj="scope_1" inlet="in"/>
-      </net>
-      <net>
          <source obj="toggle_1" outlet="o"/>
          <dest obj="OLED128x64_1" inlet="mode"/>
       </net>
       <net>
-         <source obj="axocooltrl_core_1" outlet="#10 PAR"/>
+         <source obj="obj_1" outlet="#10 PAR"/>
          <dest obj="div_1" inlet="in"/>
       </net>
       <net>
-         <source obj="axocooltrl_core_1" outlet="#7 BUT"/>
-         <dest obj="cc_1" inlet="trig"/>
+         <source obj="obj_1" outlet="#7 BUT"/>
          <dest obj="toggle_3" inlet="trig"/>
+         <dest obj="cc_1" inlet="trig"/>
       </net>
       <net>
          <source obj="toggle_3" outlet="o"/>
@@ -900,11 +911,14 @@
    </nets>
    <settings>
       <subpatchmode>no</subpatchmode>
-      <MidiChannel>1</MidiChannel>
+      <MidiChannel>2</MidiChannel>
       <NPresets>0</NPresets>
       <NPresetEntries>0</NPresetEntries>
       <NModulationSources>4</NModulationSources>
       <NModulationTargetsPerSource>4</NModulationTargetsPerSource>
+      <Author>pastitas</Author>
+      <License>GPL</License>
+      <Attributions></Attributions>
    </settings>
    <notes><![CDATA[]]></notes>
    <windowPos>
