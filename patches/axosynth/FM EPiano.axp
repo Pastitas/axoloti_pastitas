@@ -3,7 +3,7 @@
       <params/>
       <attribs/>
    </obj>
-   <patcher type="patch/patcher" uuid="4493b43d-a4b4-4864-9010-d7e4fb6d0945" name="patcher_2" x="28" y="28">
+   <patcher type="patch/patcher" uuid="cc483377-ebba-46e9-b3e8-a9c07636e22f" name="patcher_2" x="28" y="28">
       <params>
          <frac32.s.map name="Operator_1:fine tune" value="-2.0"/>
          <frac32.s.map name="Operator_1:sine_1" value="0.0"/>
@@ -61,15 +61,15 @@
             <params/>
             <attribs/>
          </obj>
-         <obj type="midi/in/keyb" uuid="53b04874696932f38aceaa168bd5d9efb743716d" name="keyb_1____tmp" x="28" y="126">
-            <params/>
-            <attribs/>
-         </obj>
          <obj type="midi/in/keyb" uuid="53b04874696932f38aceaa168bd5d9efb743716d" name="keyb_1" x="28" y="126">
             <params/>
             <attribs/>
          </obj>
-         <patcher type="patch/patcher" uuid="31d3ff95-4331-4b14-a60a-884fa8011e02" name="Operator_1" x="140" y="126">
+         <obj type="midi/in/keyb" uuid="53b04874696932f38aceaa168bd5d9efb743716d" name="keyb_2" x="28" y="126">
+            <params/>
+            <attribs/>
+         </obj>
+         <patcher type="patch/patcher" uuid="ce1a2ea5-8960-4a86-8ab3-009356ae935c" name="Operator_1" x="140" y="126">
             <params>
                <frac32.s.map name="fine tune" onParent="true" value="0.0"/>
                <frac32.s.map name="sine_1" onParent="true" value="0.0"/>
@@ -250,7 +250,7 @@
                </windowPos>
             </subpatch>
          </patcher>
-         <patcher type="patch/patcher" uuid="21c68935-2f82-48d6-a1d3-21e568294336" name="Operator_2" x="252" y="126">
+         <patcher type="patch/patcher" uuid="7dc980db-57a3-4cf3-bb16-10e3d1aa02d1" name="Operator_2" x="252" y="126">
             <params>
                <frac32.s.map name="fine tune" onParent="true" value="0.0"/>
                <frac32.s.map name="sine_1" onParent="true" value="0.0"/>
@@ -431,7 +431,7 @@
                </windowPos>
             </subpatch>
          </patcher>
-         <patcher type="patch/patcher" uuid="7038857e-cb34-48e8-bd6c-c59c73e946f3" name="Operator_3" x="392" y="126">
+         <patcher type="patch/patcher" uuid="9d9d07c6-05d3-4df8-8830-c203d76ac4d0" name="Operator_3" x="392" y="126">
             <params>
                <frac32.s.map name="fine tune" onParent="true" value="0.0"/>
                <frac32.s.map name="sine_1" onParent="true" value="0.0"/>
@@ -626,19 +626,19 @@
          </obj>
          <nets>
             <net>
-               <source obj="keyb_1____tmp" outlet="velocity"/>
+               <source obj="keyb_2" outlet="velocity"/>
                <dest obj="Operator_2" inlet="Velocity"/>
                <dest obj="Operator_3" inlet="Velocity"/>
                <dest obj="Operator_1" inlet="Velocity"/>
             </net>
             <net>
-               <source obj="keyb_1____tmp" outlet="gate2"/>
+               <source obj="keyb_2" outlet="gate2"/>
                <dest obj="Operator_2" inlet="Gate"/>
                <dest obj="Operator_3" inlet="Gate"/>
                <dest obj="Operator_1" inlet="Gate"/>
             </net>
             <net>
-               <source obj="keyb_1____tmp" outlet="note"/>
+               <source obj="keyb_2" outlet="note"/>
                <dest obj="pan_1" inlet="c"/>
                <dest obj="Operator_2" inlet="Note"/>
                <dest obj="Operator_3" inlet="Note"/>
@@ -926,7 +926,7 @@
    </nets>
    <settings>
       <subpatchmode>no</subpatchmode>
-      <MidiChannel>2</MidiChannel>
+      <MidiChannel>1</MidiChannel>
       <NPresets>0</NPresets>
       <NPresetEntries>0</NPresetEntries>
       <NModulationSources>4</NModulationSources>
